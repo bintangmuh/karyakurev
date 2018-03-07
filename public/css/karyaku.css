@@ -4,13 +4,39 @@ background-image: linear-gradient(155deg, #21D4FD 36%, #213eff 98%); */
 .bg-gradient {
     background-color: #0093E9;
     background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-    box-shadow: 0px 2px 5px #aaaaaa;
+    /* box-shadow: 0px 2px 5px #aaaaaa; */
+}
+.vh100 {
+    min-height: calc(100vh - 70px);
+}
+.bg-uny {
+    background-image : linear-gradient(160deg,rgb(0, 147, 233, 0.8) 0%, rgb(128, 208, 199, 0.6) 100%), url(../img/bg.jpg);
+    background-size: cover;
 }
 body {
     background-color: #f0f0f0f0;
 }
+.navbar {
+    /* margin-bottom: 10px; */
+}
 .box-card {
     background: #fff;
-    border: 1px #a6a6a6 solid;
-    border-radius: 3px;
+    /* border: 1px #464545 solid; */
+    box-shadow: 0px 1px 5px #aaaaaa;
+    border-radius: 5px;
+    padding: 5px;
+}
+#big-logo {
+    max-height: 100px;
+    margin-bottom: 20px;
+}
+#index-desc {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+#index-desc p {
+    font-size: 13pt;
+    line-height: 2.0;
+    font-weight: 700;
+    color: #fff;
 }
