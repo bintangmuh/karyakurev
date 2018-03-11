@@ -14,3 +14,17 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
     }
 }
+class UserTableSeeder extends Seeder 
+{
+    public function run()
+    {
+        DB::table('users')->delete();
+    }    
+}
+class KaryaTableSeeder extends Seeder 
+{
+    public function run()
+    {
+        DB::table('karya')->delete();
+    }    
+}
