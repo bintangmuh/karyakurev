@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Karya;
 use Illuminate\Http\Request;
+use Validator;
+use Auth;
 
 class KaryaController extends Controller
 {
@@ -24,7 +26,7 @@ class KaryaController extends Controller
      */
     public function create()
     {
-        return 'view form buat karya';
+        return view('karya.tambah');
     }
 
     /** 
@@ -35,13 +37,13 @@ class KaryaController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = Validator::make($request->all(), [
+
+        $validator = Validator::make($request->all(), [
             'nama' => 'required|max:144',
-            'user_id' => 'required',
             'deskripsi' => ''
         ]);
 
-        if($validate->fails()) {
+        if($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
@@ -49,13 +51,12 @@ class KaryaController extends Controller
 
         // Store the data
         $karya = new Karya();
-        $karya->user_id = $request->user_id;
+        $karya->user_id = Auth::user()->id;
         $karya->nama = $request->nama;
         $karya->deskripsi = $request->deskripsi;
         $karya->save();
 
         return $karya->toJson();
-        
     }
 
     /**

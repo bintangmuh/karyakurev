@@ -26,13 +26,14 @@ Route::get('/profile', 'ProfileController@view')->name('profile')->middleware('w
 
 Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
     Route::get('/', 'KaryaController@index')->name('tampil');
+    Route::get('{karya}', 'KaryaController@show')->name('delete');
     Route::get('create/', 'KaryaController@create')->name('buatview')->middleware('auth');
-    Route::post('create/', 'KaryaController@store')->name('buat');
-    Route::post('{karya}/img/upload/', 'KaryaController@uploadimg')->name('buat.gambar');
-    Route::post('{karya}/video/', 'KaryaController@')->name('buat.video');
-    Route::get('{karya}/img/delete', 'KaryaController@')->name('hapus.gambar');
-    Route::get('{karya}/video/delete', 'KaryaController@')->name('hapus.video');
-    Route::get('edit/{karya}', 'KaryaController@editview')->name('editview');
-    Route::post('edit/{karya}', 'KaryaController@edit')->name('edit');
-    Route::get('delete/{karya}', 'KaryaController@delete')->name('delete');
+    Route::post('create/', 'KaryaController@store')->name('buat')->middleware('auth');
+    Route::post('{karya}/img/upload/', 'KaryaController@uploadimg')->name('buat.gambar')->middleware('auth');
+    Route::post('{karya}/video/', 'KaryaController@')->name('buat.video')->middleware('auth');
+    Route::get('{karya}/img/delete', 'KaryaController@')->name('hapus.gambar')->middleware('auth');
+    Route::get('{karya}/video/delete', 'KaryaController@')->name('hapus.video')->middleware('auth');
+    Route::get('{karya}/edit', 'KaryaController@edit')->name('editview')->middleware('auth');
+    Route::post('{karya}/edit', 'KaryaController@update')->name('edit')->middleware('auth');
+    Route::get('delete/{karya}', 'KaryaController@delete')->name('delete')->middleware('auth');
 });
