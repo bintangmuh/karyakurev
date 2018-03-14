@@ -78,7 +78,7 @@ class KaryaController extends Controller
      */
     public function edit(Karya $karya)
     {
-        return $karya->toJson();
+        return view('karya.sunting', ['karya' => $karya]);
     }
 
     /**
@@ -92,7 +92,6 @@ class KaryaController extends Controller
     {
         $validate = Validator::make($request->all(), [
             'nama' => 'required|max:144',
-            'user_id' => 'required',
             'deskripsi' => ''
         ]);
 
@@ -117,12 +116,17 @@ class KaryaController extends Controller
         return "karya deleted";
     }
 
-    public function addimages(Request $request, Karya $karya)
+    public function addImages(Request $request, Karya $karya)
     {
         //upload image, image processing resize, compress
     }
 
-    public function addvideos(Request $request, Karya $karya)
+    public function addVideos(Request $request, Karya $karya)
+    {
+        //getting url coy
+    }
+
+    public function addThumbs(Request $request, Karya $karya)
     {
         //getting url coy
     }
