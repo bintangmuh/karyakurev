@@ -15,6 +15,24 @@
 	</div>
 	<div class="col-9 ">
 		<div class="card">
+			@if(isset($success))
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+				  <strong>Sukses</strong> {{ $success }}
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+			@endif
+
+			@if ($errors->any())
+			    <div class="alert alert-danger">
+			        <ul>
+			            @foreach ($errors->all() as $error)
+			                <li>{{ $error }}</li>
+			            @endforeach
+			        </ul>
+			    </div>
+			@endif
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">
 			  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -22,27 +40,38 @@
 			  </button>
 			</div>
 			<div :class="'card-body ' + [ pageinfo == 'active' ? '' : 'd-none' ]">
-				<h4>{{ $karya->nama }}</h4>
+				<h4>Sunting Karya {{ $karya->nama }}</h4>
 				<div class="row">
-					<div class="col">
+					<div class="col-sm-8">
 						<form action="{{ route('karya.edit', ['karya' => $karya]) }}" method="POST">
-							 {{ csrf_field() }}
+							{{ csrf_field() }}
 							<div class="form-group">
 								<label for="nama">Judul Karya: </label>
-								<input type="text" name="nama" class="form-control" id="nama" value="{{ $karya->nama }}">
+								<input type="text" name="nama" class="form-control" id="nama" value="{{ $karya->nama }}" >
 							</div>
 							<div class="form-group">
 								<label for="deskripsi">Deskripsi Singkat Karya: </label>
-								<textarea class="form-control" rows="7" name="deskripsi" id="deskripsi" value="{{ $karya->deskripsi }}"></textarea>
+								<textarea class="form-control" rows="7" name="deskripsi" id="deskripsi">{{ $karya->deskripsi }}</textarea>
 							</div>
 							<div class="form-group">
 								<label for="kategori">Kategori:</label>
-								<input type="text" name="nama" class="form-control" id="nama">
+								<input type="text" class="form-control" id="nama">
 							</div>
 							<div class="form-group">
 								<input type="submit" class="btn btn-primary" value="Simpan Perubahan">
 							</div>
 						</form> 
+					</div>
+					<div class="col-sm-4">
+						<form action="">
+							<b>Thumbnail</b><br>	
+							<img class="img-thumbnail" src="{{ asset('img/noimage.png') }}" alt="Generic placeholder image">
+							<label class="custom-file-form btn btn-primary">
+								<input type="file" name="thumbs">
+								unggah gambar
+							</label>
+							
+						</form>
 					</div>			
 				</div>
 			</div>
@@ -53,9 +82,10 @@
 					<div class="col-12">
 						<form action="{{ route('karya.edit', ['karya' => $karya]) }}" method="POST">
 							 {{ csrf_field() }}
-							<div class="form-group">
-								<input type="file">								
-							</div>
+							<label class="custom-file-form btn btn-primary">
+								<input type="file" name="thumbs">
+								unggah gambar
+							</label>
 						</form>
 					</div>
 					<div class="col-12">
@@ -68,10 +98,10 @@
 				<h4>Tambah Video Baru</h4>
 				<div class="row">
 					<div class="col">
-						<form action="{{ route('karya.edit', ['karya' => $karya]) }}" method="POST">
-							 {{ csrf_field() }}
-							<input type="file">
-						</form>
+						<label class="custom-file-form btn btn-primary">
+								<input type="file" name="thumbs">
+								unggah gambar
+						</label>
 					</div>			
 				</div>
 			</div>

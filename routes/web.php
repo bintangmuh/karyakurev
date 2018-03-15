@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('beta');
+    return view('indexpage');
 });
 
 Route::get('/index', function () {

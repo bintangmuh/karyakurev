@@ -90,16 +90,22 @@ class KaryaController extends Controller
      */
     public function update(Request $request, Karya $karya)
     {
-        $validate = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'nama' => 'required|max:144',
             'deskripsi' => ''
         ]);
 
-        if($validate->fails()) {
+        if($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        $karya->nama = $request->nama;
+        $karya->deskripsi = $request->deskripsi;
+        $karya->save();
+
+        return view('karya.sunting', ['karya' => $karya, 'success' => 'Berhasil mengubah informasi karya: '. $karya->nama]);
 
 
     }
@@ -118,7 +124,7 @@ class KaryaController extends Controller
 
     public function addImages(Request $request, Karya $karya)
     {
-        //upload image, image processing resize, compress
+        
     }
 
     public function addVideos(Request $request, Karya $karya)
@@ -128,6 +134,8 @@ class KaryaController extends Controller
 
     public function addThumbs(Request $request, Karya $karya)
     {
-        //getting url coy
+        $validator = Validator::make($request->all(), [
+            'thumbs' => 'required|file',
+        ]);
     }
 }
