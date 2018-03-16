@@ -37,5 +37,5 @@ Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
     Route::get('{karya}/edit', 'KaryaController@edit')->name('editview')->middleware('auth');
     Route::post('{karya}/edit', 'KaryaController@update')->name('edit')->middleware('auth');
     Route::get('{karya}/delete', 'KaryaController@delete')->name('delete')->middleware('auth');
-    Route::get('{karya}', 'KaryaController@show')->name('delete');
+    Route::get('{karya}', 'KaryaController@show')->name('tampil');
 });

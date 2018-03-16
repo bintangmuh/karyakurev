@@ -33,7 +33,7 @@
                         <div class="media media-newsfeed" style="padding-bottom: 20px;">
                           <img class="mr-3 img-thumbnail" src="{{ asset('img/noimage.png') }}" alt="Generic placeholder image">
                           <div class="media-body">
-                            <h5 class="mt-0"><b>{{ $karyatunggal->nama }}</b></h5>
+                            <h5 class="mt-0"><a href="{{ route('karya.tampil', ['karya' => $karyatunggal]) }}"><b>{{ $karyatunggal->nama }}</b></a></h5>
                             {{ $karyatunggal->deskripsi }}
                           </div>
                         </div>

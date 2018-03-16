@@ -48,3 +48,25 @@ body {
 .custom-file-form input[type="file"] {
     display: none;
 }
+ul.gallery {
+  display: inline-block;
+  padding: 0px;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.gallery li {
+  display: inline-block;
+  height: 200px;
+  list-style: none;
+  list-style-type: none;
+  margin: 0 4px;
+}
+.gallery li img {
+  height: 200px;
+  display: block;
+}
+.profiler {
+  border-left: 1px solid #f6f6f6;
+}

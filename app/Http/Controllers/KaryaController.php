@@ -67,7 +67,7 @@ class KaryaController extends Controller
      */
     public function show(Karya $karya)
     {
-        return $karya->toJson();
+        return view('karya.lihat', ['karya' => $karya]);
     }
 
     /**
