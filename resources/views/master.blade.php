@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/karyaku.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/fontawesome-all.min.css') }}">
     <link rel="shortcut icon" href="{{ asset('/img/favicon.png') }}" type="image/x-icon">
     <meta name="theme-color" content="#0093E9">
     <title>@yield('title')Karyaku</title>
