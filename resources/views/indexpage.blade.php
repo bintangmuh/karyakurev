@@ -60,14 +60,16 @@
                                             Login
                                         </button>
 
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            Lupa password anda?
-                                        </a>
                                     </div>
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        Lupa password anda?
+                                    </a>
                                 </div>
                             </form>
                         </div>
+                        <div class="card-footer">Belum memiliki akun? <a href="{{ url('/register') }}">Daftar</a></div>
                     </div>
+
                 </div>
             </div>
         </div>
