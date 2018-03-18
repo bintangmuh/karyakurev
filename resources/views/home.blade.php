@@ -10,7 +10,7 @@
             <div class="card d-none d-md-block">
                 <div class="card-body">
                     <img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle" alt=""> <br>
-                    {{ Auth::user()->name }} <br>
+                    <b>{{ Auth::user()->name }}</b> <br>
                     {{ Auth::user()->nim }} <br>
                     {{ Auth::user()->prodi }}
                 </div>

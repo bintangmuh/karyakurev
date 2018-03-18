@@ -30,7 +30,7 @@
 							</div>
 							<div class="col-md-4 col-lg-3 align-self-stretch profiler" >
 								{{ $karya->user->name }}
-
+								
 								{{ $karya->user->nim }}
 								{{ $karya->user->prodi }}
 							</div>

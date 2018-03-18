@@ -23,7 +23,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/profile', 'ProfileController@view')->name('profile')->middleware('web');
-Route::get('/profile/edit', 'ProfileController@edit')->name('user.edit')->middleware('auth');
+Route::get('/profile/edit', 'ProfileController@editview')->name('user.edit')->middleware('auth');
+Route::post('/profile/edit', 'ProfileController@edit')->name('user.postedit')->middleware('auth');
+
 Route::get('/profile/{user}', 'ProfileController@viewuser')->name('user.profile')->middleware('web');
 
 Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {

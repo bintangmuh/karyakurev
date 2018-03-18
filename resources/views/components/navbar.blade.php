@@ -7,11 +7,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link {{ Route::currentRouteName() == "home" ? 'active' : '' }}" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('profile') }}">Profile</a>
+          <a class="nav-link {{ Route::currentRouteName() == "profile" ? 'active' : '' }}" href="{{ route('profile') }}">Profile</a>
         </li>
         <li>
             <a class="nav-link" href="{{ route('logout') }}"
