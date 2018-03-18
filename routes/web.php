@@ -22,7 +22,7 @@ Route::get('/index', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/profile', 'ProfileController@view')->name('profile')->middleware('web');
+Route::get('/profile', 'ProfileController@view')->name('profile')->middleware('auth');
 Route::get('/profile/edit', 'ProfileController@editview')->name('user.edit')->middleware('auth');
 Route::post('/profile/edit', 'ProfileController@edit')->name('user.postedit')->middleware('auth');
 
