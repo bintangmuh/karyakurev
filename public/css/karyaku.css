@@ -70,3 +70,19 @@ ul.gallery {
 .profiler {
   border-left: 1px solid #f6f6f6;
 }
+
+.grid-gallery {
+  background-color: #fff;
+  padding: 0px;
+  max-width: 300px;
+}
+.grid-gallery .title {
+  font-weight: 700;
+  padding: 5px;
+  display: block;
+}
+.nav-link.active {
+  background-color: #fff;
+  border-radius: 5px;
+  color: #0093E9 !important;
+}
