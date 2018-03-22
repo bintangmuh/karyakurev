@@ -33,12 +33,12 @@
 			        </ul>
 			    </div>
 			@endif
-			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			{{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
 			  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			    <span aria-hidden="true">&times;</span>
 			  </button>
-			</div>
+			</div> --}}
 			<div :class="'card-body ' + [ pageinfo == 'active' ? '' : 'd-none' ]">
 				<h4>Sunting Karya {{ $karya->nama }}</h4>
 				<div class="row">
@@ -80,13 +80,13 @@
 				<h4>Tambah Gambar Penunjang Karya</h4>
 				<div class="row">
 					<div class="col-12">
-						<form action="{{ route('karya.buat.gambar', ['karya' => $karya]) }}"  method="POST" enctype="multipart/form-data">
+						<form action="{{ route('karya.buat.gambar', ['karya' => $karya]) }}"  v-on:submit.prevent="" method="POST" enctype="multipart/form-data">
 							{{ csrf_field() }}
 							<div class="col-xs-6">
 								<img :src="image" class="img-fluid img-thumbnail mr-3" width="100px" alt="">
 								<label class="custom-file-form btn btn-light">
 									<input type="file" v-on:change="onImageChange" name="image">
-									<i class="fa fa-image"></i> pilih gambar
+									<i class="fa fa-folder"></i> pilih gambar
 								</label>
 							</div>
 							<div class="col-xs-6">
@@ -166,9 +166,28 @@
                 reader.readAsDataURL(file);
             },
             imageUpload() {
-            	axios.post('{{ route('karya.edit', ['karya' => $karya]) }}',{image: this.image}).then(response => {
-                   console.log(response);
-                });
+            	axios.post('{{ route('karya.buat.gambar', ['karya' => $karya]) }}',{image: this.image}).then(response => {
+            		app3.image = '';
+                	console.log("Sukses Upload");
+                })
+                .catch(function (error) {
+				    if (error.response) {
+				      // The request was made and the server responded with a status code
+				      // that falls out of the range of 2xx
+				      console.log(error.response.data);
+				      console.log(error.response.status);
+				      console.log(error.response.headers);
+				    } else if (error.request) {
+				      // The request was made but no response was received
+				      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+				      // http.ClientRequest in node.js
+				      console.log(error.request);
+				    } else {
+				      // Something happened in setting up the request that triggered an Error
+				      console.log('Error', error.message);
+				    }
+				    console.log(error.config);
+				  });
             }
 		}
 	})

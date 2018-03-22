@@ -126,7 +126,7 @@ class KaryaController extends Controller
 
     public function addImage(Request $request, Karya $karya)
     {
-        $process = $this->uploadImg('gallery', $request->file('image'), $karya);
+        $process = $this->uploadImg('gallery', $request->get('image'), $karya);
         $gallery = new Gallery([
             'user_id' => Auth::user()->id,
             'img_url' => $process
