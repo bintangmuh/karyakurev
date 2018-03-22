@@ -86,3 +86,14 @@ ul.gallery {
   border-radius: 5px;
   color: #0093E9 !important;
 }
+
+.profile-box .img {
+  
+}
+.profil-box .line {
+  display: block;
+}
+.profil-box .nama {
+  font-size: 16pt;
+  font-weight: 700;
+}

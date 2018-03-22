@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-	{{ $karya->nama }}
+	{{ $karya->nama }} - 
 @endsection
 
 @section('content')
@@ -28,11 +28,16 @@
 								<b>Deskripsi</b><br>
 								{{ $karya->deskripsi }}
 							</div>
-							<div class="col-md-4 col-lg-3 align-self-stretch profiler" >
-								{{ $karya->user->name }}
+							<div class="col-md-4 col-lg-3 pt-3 pb-3 profiler profil">
+								@if ($karya->user->profilimg == NULL)
+									<img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle mb-3" alt=""><br>
+								@endif	
+								<div>
+									<span class="line nama">{{ $karya->user->name }}</span>
+									<span class="line nim">{{ $karya->user->nim }}</span>
+									<span class="line prodi">{{ $karya->user->prodi }}</span>
+								</div>	
 								
-								{{ $karya->user->nim }}
-								{{ $karya->user->prodi }}
 							</div>
 						</div>
 					</div>

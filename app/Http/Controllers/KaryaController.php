@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Karya;
+use App\Gallery;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
+use Image;
 
 class KaryaController extends Controller
 {
@@ -122,9 +124,15 @@ class KaryaController extends Controller
         return "karya deleted";
     }
 
-    public function addImages(Request $request, Karya $karya)
+    public function addImage(Request $request, Karya $karya)
     {
-        
+        $process = $this->uploadImg('gallery', $request->file('image'), $karya);
+        $gallery = new Gallery([
+            'user_id' => Auth::user()->id,
+            'img_url' => $process
+        ]);
+        $karya->gallery()->save($gallery);
+        return response()->json(['success' => 'You have successfully uploaded an image' . $process ], 200);
     }
 
     public function addVideos(Request $request, Karya $karya)
@@ -137,5 +145,17 @@ class KaryaController extends Controller
         $validator = Validator::make($request->all(), [
             'thumbs' => 'required|file',
         ]);
+    }
+
+    public function uploadImg(String $type, $file, Karya $karya) {
+        $path = "/uploads/" . $type . "-" . $karya->id . "-" . date("Ymdhis").".jpg"; 
+        $uploadedFile = Image::make($file)
+            ->resize(null, 1000, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+            ->save(public_path() . $path);
+        
+        return $path;
     }
 }
