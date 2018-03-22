@@ -32,7 +32,7 @@ Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
     Route::get('/', 'KaryaController@index')->name('tampil');
     Route::get('create/', 'KaryaController@create')->name('buatview')->middleware('auth');
     Route::post('create/', 'KaryaController@store')->name('buat')->middleware('auth');
-    Route::post('{karya}/img/upload/', 'KaryaController@uploadimg')->name('buat.gambar')->middleware('auth');
+    Route::post('{karya}/img/upload/', 'KaryaController@addImage')->name('buat.gambar')->middleware('auth');
     Route::post('{karya}/video/', 'KaryaController@')->name('buat.video')->middleware('auth');
     Route::get('{karya}/img/delete', 'KaryaController@')->name('hapus.gambar')->middleware('auth');
     Route::get('{karya}/video/delete', 'KaryaController@')->name('hapus.video')->middleware('auth');
@@ -40,4 +40,10 @@ Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
     Route::post('{karya}/edit', 'KaryaController@update')->name('edit')->middleware('auth');
     Route::get('{karya}/delete', 'KaryaController@delete')->name('delete')->middleware('auth');
     Route::get('{karya}', 'KaryaController@show')->name('tampil');
+});
+
+// Admin route 
+
+Route::group(['prefix' => 'admin', 'as' => 'admin', 'middleware'=> 'auth'], function() {
+    Route::get('/', 'AdminController@index')->name('index');
 });
