@@ -58,7 +58,7 @@ class KaryaController extends Controller
         $karya->deskripsi = $request->deskripsi;
         $karya->save();
 
-        return $karya->toJson();
+        return redirect()->route('karya.tampil', ['karya' => $karya]);
     }
 
     /**
