@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
-    protected $table = 'video';
+    protected $table = 'videos';
+    protected $fillable = ['youtube_url'];
 
     public function karya()
     {

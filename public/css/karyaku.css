@@ -48,6 +48,26 @@ body {
 .custom-file-form input[type="file"] {
     display: none;
 }
+
+/*Card News feed*/
+.media-newsfeed .title a {
+    color: #2A2A2A;
+    font-size: 16pt;
+    display: block;
+}
+.media-newsfeed span.date {
+  display: block;
+  font-size: 11pt;
+}
+.media-newsfeed span.author {
+  color: #5E5E5E;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: block;
+}
+.media-newsfeed .desc {
+  color: #343434;
+}
 ul.gallery {
   display: inline-block;
   padding: 0px;

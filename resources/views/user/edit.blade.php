@@ -69,12 +69,12 @@
 			</div>
 		</div>
 
-		<div class="col-md-3">
+		<div id="uploadsection" class="col-md-3">
 			<div class="card">
 				<div class="card-body">
 					<b>Gambar Profil</b>
 					<hr>
-					<img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle" alt="">
+					<img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle" width="100%" alt="">
 					<form action="">
 						<label class="btn btn-primary btn-block custom-file-form">
 							<input type="file" name="profilimg">

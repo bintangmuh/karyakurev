@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Karya;
 use App\Gallery;
+use App\Video;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
@@ -135,11 +136,34 @@ class KaryaController extends Controller
         return response()->json(['success' => 'You have successfully uploaded an image' . $process ], 200);
     }
 
-    public function addVideos(Request $request, Karya $karya)
+    public function addVideo(Request $request, Karya $karya)
     {
-        //getting url coy
-    }
+        $validator = Validator::make($request->all(), [
+            'youtubeurl' => 'required|active_url'
+        ]);
 
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $url = $this->youtube_id_from_url($request->youtubeurl);
+
+        if ($url == false) {
+            return response()->json(['youtubeurl' => 'Maaf Youtube URL anda tidak valid'], 422);
+        }
+        $video = new Video(['youtube_url' => $url]);
+        $karya->videos()->save($video);
+
+        return response()->json(['success' => 'Berhasil menambahkan youtube video', 'video' => $video], 200);
+
+    }
+    // Remove youtube video 
+    public function removeVideo(Karya $karya, Request $request)
+    {
+        $video = Video::findOrFail($request->video);
+        $video->delete();
+        return response()->json(['success' => 'Berhasil menghapus youtube video'], 200);
+    }
     public function addThumbs(Request $request, Karya $karya)
     {
         $validator = Validator::make($request->all(), [
@@ -147,6 +171,7 @@ class KaryaController extends Controller
         ]);
     }
 
+    // upload image function
     public function uploadImg(String $type, $file, Karya $karya) {
         $path = "/uploads/" . $type . "-" . $karya->id . "-" . date("Ymdhis").".jpg"; 
         $uploadedFile = Image::make($file)
@@ -157,5 +182,32 @@ class KaryaController extends Controller
             ->save(public_path() . $path);
         
         return $path;
+    }
+
+    // parsing youtube url
+    function youtube_id_from_url($url) {
+        $pattern =
+            '%^# Match any YouTube URL
+            (?:https?://)?  # Optional scheme. Either http or https
+            (?:www\.)?      # Optional www subdomain
+            (?:             # Group host alternatives
+            youtu\.be/    # Either youtu.be,
+            | youtube\.com  # or youtube.com
+            (?:           # Group path alternatives
+              /embed/     # Either /embed/
+            | /v/         # or /v/
+            | /watch\?v=  # or /watch\?v=
+            )             # End path alternatives.
+            )               # End host alternatives.
+            ([\w-]{10,12})  # Allow 10-12 for 11 char YouTube id.
+            $%x'
+        ;
+        $result = preg_match($pattern, $url, $matches);
+        
+        if (false !== $result) {
+            return $matches[1];
+        }
+        
+        return false;
     }
 }

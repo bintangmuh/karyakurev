@@ -12,7 +12,7 @@ class Karya extends Model
 		return $this->hasMany('App\Gallery', 'karya_id');
 	}
 
-	public function video() {
+	public function videos() {
 		return $this->hasMany('App\Video', 'karya_id');
 	}
 
