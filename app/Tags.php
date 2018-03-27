@@ -10,6 +10,6 @@ class Tags extends Model
     protected $fillable = ['tag'];
 
     public function tag() {
-		return $this->belongsTo('App\Karya', 'tags_karya');
+		return $this->belongsToMany('App\Karya', 'tags_karya');
 	}
 }

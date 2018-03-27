@@ -39,9 +39,9 @@
 		<div class="col-sm-12 col-md-10">
 			<div class="card">
 				<div :class="'card-body ' + [ pageinfo == 'active' ? '' : 'd-none' ]">
-					@if(isset($success))
+					@if(Session::has('success'))
 						<div class="alert alert-success alert-dismissible fade show" role="alert">
-						  <strong>Sukses</strong> {{ $success }}
+						  <strong>Sukses</strong> {{ Session::get('success') }}
 						  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						    <span aria-hidden="true">&times;</span>
 						  </button>
@@ -66,9 +66,9 @@
 									<textarea class="form-control" rows="7" name="deskripsi" id="deskripsi">{{ $karya->deskripsi }}</textarea>
 								</div>
 								<div class="form-group">
-									<label for="kategori">Kategori:</label>
-
-									<select class="form-control" id="input-tags" name="tags[]" multiple="true">
+									<label for="kategori">Kategori: </label>
+		
+									<select class="form-control" id="input-tags" name="tags[]" multiple="true" value="{!! $selected !!}">
 										@foreach ($tags as $tag)
 											<option value="{{ $tag->id }}">{{ $tag->tag }}</option>
 										@endforeach
@@ -169,6 +169,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
 	$(document).ready(function() {
+		$('#input-tags').val({!! $selected !!});
 	    $('#input-tags').select2({
 	    	placeholder: "Pilih kategori",
 	    });

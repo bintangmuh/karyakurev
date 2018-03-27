@@ -9,6 +9,7 @@ use App\Video;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
+use Session;
 use Image;
 
 class KaryaController extends Controller
@@ -62,6 +63,8 @@ class KaryaController extends Controller
         $karya->deskripsi = $request->deskripsi;
         $karya->save();
 
+        Session::flash('success', 'Profil telah diperbaharui!');
+
         return redirect()->route('karya.tampil', ['karya' => $karya]);
     }
 
@@ -85,7 +88,8 @@ class KaryaController extends Controller
     public function edit(Karya $karya)
     {
         $tags = Tags::all();
-        return view('karya.sunting', ['karya' => $karya, 'tags' => $tags]);
+        $selected = $karya->tags->pluck('id');
+        return view('karya.sunting', ['karya' => $karya, 'tags' => $tags, 'selected' => $selected]);
     }
 
     /**
@@ -110,8 +114,12 @@ class KaryaController extends Controller
 
         $karya->nama = $request->nama;
         $karya->deskripsi = $request->deskripsi;
+        $karya->tags()->sync($request->get('tags'));
+
         $karya->save();
-        return view('karya.sunting', ['karya' => $karya, 'success' => 'Berhasil mengubah informasi karya: '. $karya->nama]);
+
+        Session::flash('success', 'Karya telah diperbaharui!');
+        return redirect()->route('karya.edit', ['karya' => $karya]);
     }
 
     /**
