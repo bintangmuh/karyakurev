@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Karya;
+use App\Tags;
 use App\Gallery;
 use App\Video;
 use Illuminate\Http\Request;
@@ -19,7 +20,9 @@ class KaryaController extends Controller
      */
     public function index()
     {
-        return Karya::all();
+        // return Tags::all();
+        $karya = Karya::select('nama', 'id')->with('tags')->get();
+        return $karya;
     }
 
     /**
@@ -81,7 +84,8 @@ class KaryaController extends Controller
      */
     public function edit(Karya $karya)
     {
-        return view('karya.sunting', ['karya' => $karya]);
+        $tags = Tags::all();
+        return view('karya.sunting', ['karya' => $karya, 'tags' => $tags]);
     }
 
     /**
@@ -107,10 +111,7 @@ class KaryaController extends Controller
         $karya->nama = $request->nama;
         $karya->deskripsi = $request->deskripsi;
         $karya->save();
-
         return view('karya.sunting', ['karya' => $karya, 'success' => 'Berhasil mengubah informasi karya: '. $karya->nama]);
-
-
     }
 
     /**
@@ -133,7 +134,7 @@ class KaryaController extends Controller
             'img_url' => $process
         ]);
         $karya->gallery()->save($gallery);
-        return response()->json(['success' => 'You have successfully uploaded an image' . $process ], 200);
+        return response()->json(['success' => 'You have successfully uploaded an image' . $process, 'image' => $gallery ], 200);
     }
 
     public function addVideo(Request $request, Karya $karya)
@@ -157,6 +158,14 @@ class KaryaController extends Controller
         return response()->json(['success' => 'Berhasil menambahkan youtube video', 'video' => $video], 200);
 
     }
+    // remove image
+    public function removeImage(Karya $karya, Request $request)
+    {
+        $image = Gallery::findOrFail($request->image);
+        $image->delete();
+        return response()->json(['success' => 'Berhasil menghapus gambar galeri'], 200);
+    }
+
     // Remove youtube video 
     public function removeVideo(Karya $karya, Request $request)
     {
@@ -164,11 +173,30 @@ class KaryaController extends Controller
         $video->delete();
         return response()->json(['success' => 'Berhasil menghapus youtube video'], 200);
     }
+
+    //Tambah thumbnail
     public function addThumbs(Request $request, Karya $karya)
     {
         $validator = Validator::make($request->all(), [
-            'thumbs' => 'required|file',
+            'thumbs' => 'required',
         ]);
+
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $path = "/uploads/thumbs-" . $karya->id . "-" . date("Ymdhis").".jpg"; 
+        $uploadedFile = Image::make($request->get('thumbs'))
+            ->fit(500, 500, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+            ->save(public_path() . $path);
+
+        $karya->img_thumb = $path;
+        $karya->save();
+        
+        return response()->json(['success', 'Thumbnail telah ditambahkan', 'thumbs' => $path], 200);
     }
 
     // upload image function
