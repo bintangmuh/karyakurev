@@ -149,6 +149,7 @@ ul.gallery {
   color: #0093E9 !important;
 }
 
+/*Profile Page*/
 .profile-box .img {
   
 }
@@ -159,7 +160,27 @@ ul.gallery {
   font-size: 16pt;
   font-weight: 700;
 }
+.karya-card {
+  margin-bottom: 10px;
+  background-color: #fff;
+  padding: 0px;
+  border-radius: 3px;
+  border: 1px solid #E4E4E4;
+}
+.karya-card .img-thumbs img{
+  width: 100%;
 
+}
+.karya-card .name {
+  font-weight: 600;
+  width: 100%;
+  word-wrap: break-word;
+}
+.karya-card .name a {
+  padding: 10px 10px;
+  color: black;
+  display: block;
+}
 /*Galery Thumbnail*/
 .thumb-gallery {
   position: relative;
