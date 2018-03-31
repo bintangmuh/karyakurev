@@ -22,21 +22,27 @@ Route::get('/index', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/explore', 'ExploreController@index')->name('explore')->middleware('auth');
+Route::get('/tag', 'ExploreController@index')->name('explore.tag')->middleware('auth');
+Route::get('/prodi', 'ExploreController@index')->name('explore.home')->middleware('auth');
+
 Route::get('/profile', 'ProfileController@view')->name('profile')->middleware('auth');
+
 Route::get('/profile/edit', 'ProfileController@editview')->name('user.edit')->middleware('auth');
 Route::post('/profile/edit', 'ProfileController@edit')->name('user.postedit')->middleware('auth');
 
-Route::get('/profile/{user}', 'ProfileController@viewuser')->name('user.profile')->middleware('web');
+Route::get('/profile/{user}', 'ProfileController@viewUser')->name('user.profile')->middleware('web');
 
+// Route arya
 Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
     Route::get('/', 'KaryaController@index')->name('tampil');
     Route::get('create/', 'KaryaController@create')->name('buatview')->middleware('auth');
     Route::post('create/', 'KaryaController@store')->name('buat')->middleware('auth');
+    Route::post('{karya}/thumbs/', 'KaryaController@addThumbs')->name('buat.thumbs')->middleware('auth');
     Route::post('{karya}/img/upload/', 'KaryaController@addImage')->name('buat.gambar')->middleware('auth');
     Route::post('{karya}/video/', 'KaryaController@addVideo')->name('buat.video')->middleware('auth');
-    Route::get('{karya}/img/delete', 'KaryaController@')->name('hapus.gambar')->middleware('auth');
+    Route::post('{karya}/img/delete', 'KaryaController@removeImage')->name('hapus.gambar')->middleware('auth');
     Route::post('{karya}/video/delete', 'KaryaController@removeVideo')->name('hapus.video')->middleware('auth');
-    Route::get('{KaryaController    }/video/delete', 'KaryaController@')->name('hapus.video')->middleware('auth');
     Route::get('{karya}/edit', 'KaryaController@edit')->name('editview')->middleware('auth');
     Route::post('{karya}/edit', 'KaryaController@update')->name('edit')->middleware('auth');
     Route::get('{karya}/delete', 'KaryaController@delete')->name('delete')->middleware('auth');

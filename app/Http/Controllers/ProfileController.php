@@ -12,8 +12,14 @@ class ProfileController extends Controller
 {
     public function view()
     {
-    	return view('profile')->with(['user' => Auth::user()]);
+    	return view('user.view')->with(['user' => Auth::user()]);
     }
+
+    public function viewUser(User $user)
+    {
+        return view('user.view')->with(['user' => $user]);
+    }
+
     public function editview()
     {
     	return view('user.edit', ['user' => Auth::user() ]);

@@ -26,7 +26,7 @@
                     @endif
                     @foreach ($karya as $karyatunggal)
                     <div class="media media-newsfeed" style="padding-bottom: 20px;">
-                        <a href="{{ route('karya.tampil', ['karya' => $karyatunggal]) }}"><img class="mr-3 img-thumbnail" src="{{ asset('img/noimage.png') }}" alt="Generic placeholder image"></a>
+                        <a href="{{ route('karya.tampil', ['karya' => $karyatunggal]) }}"><img class="mr-3 img-thumbnail" src="{{ ($karyatunggal->img_thumb == NULL) ? asset('img/noimage.png') : asset($karyatunggal->img_thumb)}}" width="100px"></a>
                         
                         <div class="media-body">
                             <span class="title"><a href="{{ route('karya.tampil', ['karya' => $karyatunggal]) }}"><b>{{ $karyatunggal->nama }}</b></a></span>

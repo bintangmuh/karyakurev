@@ -1,6 +1,9 @@
 /* background-color: #21D4FD;
 background-image: linear-gradient(155deg, #21D4FD 36%, #213eff 98%); */
-
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff !important;
+    background-color: #007bff;
+}
 .bg-gradient {
     background-color: #0093E9;
     background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
@@ -18,6 +21,19 @@ body {
 }
 .navbar {
      margin-bottom: 10px; 
+}
+.footer {
+  padding: 20px;
+  font-size: 9pt;
+  text-align: center;
+}
+.loading {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-image: url('../img/loading.gif');
+  background-size: auto 100%;
+  background-repeat: no-repeat;
 }
 .box-card {
     background: #fff;
@@ -83,10 +99,36 @@ ul.gallery {
   list-style-type: none;
   margin: 0 4px;
 }
+.gallery li:first-child {
+  margin-left: 0px;
+}
+.gallery li:last-child {
+  margin-right: 0px;
+}
 .gallery li img {
   height: 200px;
   display: block;
 }
+.gallery li .video {
+  position: relative;
+}
+.gallery li .video .play-button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 200px;
+  line-height: 200px;
+  opacity: 0.6;
+  color: #fff;
+  text-align: center;
+  font-size: 60px;
+  transition: 0.3s;
+}
+.gallery li .video .play-button:hover {
+  opacity: 1;
+}
+
 .profiler {
   border-left: 1px solid #f6f6f6;
 }
@@ -116,4 +158,133 @@ ul.gallery {
 .profil-box .nama {
   font-size: 16pt;
   font-weight: 700;
+}
+
+/*Galery Thumbnail*/
+.thumb-gallery {
+  position: relative;
+  margin-bottom: 15px;
+}
+.thumb-gallery .btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+/*karya thumbinail*/
+.thumbimg {
+  width: 100%;
+  position: relative;
+}
+.thumbimg img {
+  width: 100% !important;
+}
+.thumbimg .custom-file-form {
+  position: absolute;
+  top: -25px;
+  right: -15px;
+}
+/*
+Profil Karya
+css box samping karya
+*/
+.profil-karya {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.profil-karya img {
+  width: 100%;
+  max-width: 60px;
+  height: auto;
+  margin-right: 10px;
+}
+.profil-karya .detail {
+  width: auto;
+  padding-top: 5px;
+}
+.profil-karya .detail .nama {
+  font-weight: 700;
+  font-size: 13pt;
+  color: inherit;
+}
+.profil-karya .detail .prodi {
+  font-weight: 500;
+  font-size: 11pt;
+  color: #868686;
+}
+
+.profil-karya .detail span {
+  display: block;  
+}
+/* Karya box
+* Adding card box styling
+*
+*
+*/
+.karya-box {
+}
+@media only screen and (max-width: 600px) {
+    .karya-box {
+      margin-right: -15px;
+      margin-left: -15px; 
+      margin-top: -10px;
+      border-radius: 0xp; 
+    }
+}
+.karya-box .header {
+  display: block;
+  margin-bottom: 20px;
+}
+.karya-box .header img {
+  height: 60px;
+  float: left;
+  border-radius: 30px;
+  margin-top: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
+.karya-box .header div {
+  width: calc(100% - 70px);
+  display: inline-block;
+}
+.karya-box .header .judul {
+  display: block;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.karya-box .header .waktu {
+  color: #999;
+}
+
+/*Tag list*/
+.tag-list {
+  display: block;
+  padding: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.tag-list li {
+  display: inline-block;
+  background-color: #9e9e9e;
+  color: #fff;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+.tag-list li:hover {
+  display: inline-block;
+  background-color: #0093E9;
+  color: #fff;
+}
+.tag-list li a {
+  color: inherit;
+  padding: 5px 10px;
+  display: block;
+  text-decoration: none;
+}
+
+.fancybox-button--share {
+  display: none !important;
 }
