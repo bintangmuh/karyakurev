@@ -1,8 +1,7 @@
-@extends('master')
+@extends('layouts.user')
 @section('title', 'Beranda - ')
-@section('content')
-@include('components.navbar')
-<div class="container">
+@section('body')
+<div class="container" id="app">
     <div class="row">
         <div class="col-md-3">
             <div class="card d-none d-md-block">
@@ -24,28 +23,53 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    @foreach ($karya as $karyatunggal)
-                    <div class="media media-newsfeed" style="padding-bottom: 20px;">
-                        <a href="{{ route('karya.tampil', ['karya' => $karyatunggal]) }}"><img class="mr-3 img-thumbnail" src="{{ ($karyatunggal->img_thumb == NULL) ? asset('img/noimage.png') : asset($karyatunggal->img_thumb)}}" width="100px"></a>
+                    <div class="media media-newsfeed" style="padding-bottom: 20px;" v-for="karya in data">
+                        <a href="#"><img class="mr-3 img-thumbnail" src="{{ asset('img/noimage.png') }}" width="100px"></a>
                         
                         <div class="media-body">
-                            <span class="title"><a href="{{ route('karya.tampil', ['karya' => $karyatunggal]) }}"><b>{{ $karyatunggal->nama }}</b></a></span>
-                            <span class="date">{{ $karyatunggal->created_at }}</span>
-                            <span class="author">
-                                <img src="{{ asset('img/noprofilimage.png') }}" height="16pt" class="rounded-circle" alt=""> {{ $karyatunggal->user->name }}
-                            </span>
-                            <div class="desc d-none d-md-block">
-                                {{ $karyatunggal->deskripsi }}
-                            </div>
+                            <span class="title"><a href="#"><b>@{{ karya.nama }}</b></a></span>
+                            <span class="date"><i class="fa fa-calendar-alt"></i> @{{ karya.created_at }} oleh <a href="#">@{{ karya.user.name }}</a></span>
                         </div>
                     </div>
-                    @endforeach
-                    
-                    
+                                       
                 </div>
             </div>
-            <a href="#" class="btn btn-light mt-3 mb-3 btn-block  mx-auto"><i class="fa fa-arrow-down"></i> Lihat Lebih Banyak</a>
+            <button v-on:click="selebihnya" v-if="next_page_url != null" class="btn btn-light mt-3 mb-3 btn-block  mx-auto"><i class="fa fa-arrow-down"></i> Lihat Lebih Banyak</button>
         </div>
     </div>
 </div>
 @endsection
+
+@push('js')
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            data: {},
+            next_page_url: '',
+        },
+        mounted: function() {
+            axios.get('{{route('home.list')}}')
+            .then(function (response) {
+              app.data = response.data.data;
+              app.next_page_url = response.data.next_page_url;
+            })
+            .catch(function (error) {
+               console.log(error);
+            });
+        },
+        methods: {
+            selebihnya: function() {
+                axios.get(this.next_page_url)
+                .then(function (response) {
+                    app.data = app.data.concat(response.data.data);
+                    app.next_page_url = response.data.next_page_url;
+                })
+                .catch(function (error) {
+                   console.log(error);
+                });
+            },
+        },
+    })
+</script>
+@endpush

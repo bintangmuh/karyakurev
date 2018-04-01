@@ -24,7 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $karya = Karya::all();
+        $karya = Karya::orderBy('created_at','DESC')->paginate(5);
         return view('home', ['karya' => $karya]);
+    }
+
+    public function karyaList()
+    {
+        $karya = Karya::with('user')->orderBy('created_at','DESC')->paginate(5);
+        return response()->json($karya, 200);
     }
 }
