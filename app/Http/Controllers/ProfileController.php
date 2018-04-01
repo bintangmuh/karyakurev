@@ -20,6 +20,13 @@ class ProfileController extends Controller
         return view('user.view')->with(['user' => $user]);
     }
 
+    public function viewKaryaUser(User $user)
+    {
+        $karya = $user->karya()->orderBy('created_at', 'DESC')->simplePaginate(6);
+        return response()->json($karya, 200);
+    }
+
+
     public function editview()
     {
     	return view('user.edit', ['user' => Auth::user() ]);
