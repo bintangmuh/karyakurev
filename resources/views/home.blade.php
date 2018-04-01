@@ -28,7 +28,8 @@
                         
                         <div class="media-body">
                             <span class="title"><a href="#"><b>@{{ karya.nama }}</b></a></span>
-                            <span class="date"><i class="fa fa-calendar-alt"></i> @{{ karya.created_at }} oleh <a href="#">@{{ karya.user.name }}</a></span>
+                            <span class="date"><i class="fa fa-calendar-alt"></i> @{{ karya.created_at | dateFormat }} oleh <a href="#">@{{ karya.user.name }}</a></span>
+                            <p>@{{ karya.deskripsi }}</p>
                         </div>
                     </div>
                                        
@@ -41,6 +42,7 @@
 @endsection
 
 @push('js')
+<script src="{{ asset('/js/moment-with-locales.js')}}"></script>       
 <script>
     var app = new Vue({
         el: "#app",
@@ -70,6 +72,12 @@
                 });
             },
         },
+        filters: {
+            dateFormat: function(value) {
+                moment.locale('id');
+                return moment(value).format('LLL');
+            }
+        }
     })
 </script>
 @endpush

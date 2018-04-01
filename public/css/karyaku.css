@@ -73,13 +73,16 @@ body {
 }
 .media-newsfeed span.date {
   display: block;
-  font-size: 11pt;
+  font-size: 10pt;
+  color: #A7A7A7;
+  padding-bottom: 5px;
 }
 .media-newsfeed span.author {
   color: #5E5E5E;
   margin-top: 5px;
   margin-bottom: 5px;
   display: block;
+
 }
 .media-newsfeed .desc {
   color: #343434;
