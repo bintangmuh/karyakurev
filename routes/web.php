@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/home/page', 'HomeController@karyaList')->name('home.list')->middleware('auth');
-Route::get('/explore', 'ExploreController@index')->name('explore')->middleware('auth');
+Route::get('/explore', 'ExploreController@explore')->name('explore')->middleware('web');
 Route::get('/tag', 'ExploreController@index')->name('explore.tag')->middleware('auth');
 Route::get('/prodi', 'ExploreController@index')->name('explore.home')->middleware('auth');
 
