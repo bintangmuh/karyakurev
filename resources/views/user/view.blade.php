@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="col-12" v-if="next_page_url != null">
-					<button v-on:click="selebihnya" class="btn btn-light mt-3 mb-3 btn-block  mx-auto"><i class="fa fa-arrow-down"></i> Lihat Lebih Banyak</button>
+					<button v-on:click="selebihnya" class="btn btn-light mt-3 mb-0 btn-block  mx-auto"><i class="fa fa-arrow-down"></i> Lihat Lebih Banyak</button>
 				</div>
 			</div>	
 		</div>

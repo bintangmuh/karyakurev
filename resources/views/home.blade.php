@@ -23,14 +23,22 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <div class="media media-newsfeed" style="padding-bottom: 20px;" v-for="karya in data">
-                        <a href="#"><img class="mr-3 img-thumbnail" src="{{ asset('img/noimage.png') }}" width="100px"></a>
-                        
-                        <div class="media-body">
-                            <span class="title"><a href="#"><b>@{{ karya.nama }}</b></a></span>
-                            <span class="date"><i class="fa fa-calendar-alt"></i> @{{ karya.created_at | dateFormat }} oleh <a href="#">@{{ karya.user.name }}</a></span>
-                            <p>@{{ karya.deskripsi }}</p>
+                    <div class="media-newsfeed" v-for="karya in data">
+                        <div class="media">
+                            <a :href="'{{ url("/karya/") }}/'+ karya.id"><img class="mr-3 img-thumbnail" src="{{ asset('img/noimage.png') }}" width="50px"></a>
+                            <div class="media-body">
+                                <span class="title"><a :href="'{{ url("/karya/") }}/'+ karya.id"><b>@{{ karya.nama }}</b></a></span>
+                                <span class="date"><i class="fa fa-calendar-alt"></i> @{{ karya.created_at | dateFormat }} oleh <a :href="'{{ url("/profile/") }}/'+ karya.user.id">@{{ karya.user.name }}</a></span>
+                            </div>
                         </div>
+                        <p class="desc">
+                            @{{ karya.deskripsi }}
+                            <span class="row">
+                                <span class="col-12">
+                                    <a :href="'{{ url("/karya/") }}/'+ karya.id" class="btn btn-primary btn-sm btn-info mt-2"><i class="fa fa-eye"></i>  Selengkapnya</a>
+                                </span>
+                            </span>
+                        </p>
                     </div>
                                        
                 </div>
