@@ -57,7 +57,7 @@
 
 								<ul class="tag-list mt-4">
 									@foreach ($karya->tags as $tag)
-										<li><a href="">{{ $tag->tag }}</a></li>
+										<li><a href="{{ route('explore.tags', ['tags' => $tag])}}">{{ $tag->tag }}</a></li>
 									@endforeach
 								</ul>
 							</div>

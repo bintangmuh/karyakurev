@@ -24,7 +24,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/home/page', 'HomeController@karyaList')->name('home.list')->middleware('auth');
 Route::get('/explore', 'ExploreController@explore')->name('explore')->middleware('web');
-Route::get('/tag', 'ExploreController@index')->name('explore.tag')->middleware('auth');
+Route::get('/search/{query}', 'ExploreController@searchGet')->name('searchGet')->middleware('web');
+Route::post('/search', 'ExploreController@search')->name('search')->middleware('web');
+Route::get('/search', 'ExploreController@explore')->name('search')->middleware('web');
+Route::get('/tags/{tag}', 'ExploreController@tags')->name('explore.tags')->middleware('auth');
 Route::get('/prodi', 'ExploreController@index')->name('explore.home')->middleware('auth');
 
 Route::get('/profile', 'ProfileController@view')->name('profile')->middleware('auth');

@@ -15,11 +15,21 @@ class ExploreController extends Controller
     }
 
     public function search(Request $request) {
-    	$karya  = Karya::select('id, nama, created_at')->paginate(5);
-    	return view('explore.index', ['karya' => $karya]);
+    	if ($request->search == NULL) {
+			return redirect()->route('explore');
+    	}
+		return redirect()->route('searchGet', ['query' => $request->search]);
     }
-    public function tags(Tags $tag) {
 
+    public function searchGet($request) {
+		$keyword = $request;
+		$karya = Karya::where('nama', 'LIKE', '%'.$keyword.'%')->orWhere('deskripsi', 'LIKE', '%'.$keyword.'%')->paginate(8);
+		return view('explore.search', ['karya' => $karya, 'keyword' => $keyword]);
+    }
+
+    public function tags(Tags $tag) {
+    	$karya = $tag->karya()->paginate(8);
+    	return view('explore.tags', ['tag' => $tag, 'karya' => $karya]);
     }
 
 }

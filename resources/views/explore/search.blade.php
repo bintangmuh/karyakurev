@@ -1,6 +1,8 @@
 @extends('layouts.user')
 
-@section('title', 'Jelajah Karya - ')
+@section('title')
+	Hasil Pencarian "{{ $keyword }}"
+@endsection
 
 @section('body')
 	<div class="container">
@@ -16,13 +18,7 @@
 			</div>
 		</div>
 		
-		<b>Jelajah berdasarkan tag: </b>
-				
-		<ul class="tag-list mt-1 mb-4">
-			@foreach ($tags as $tag)
-				<li><a href="{{ route('explore.tags', ['tags' => $tag])}}">{{ $tag->tag }}</a></li>
-			@endforeach
-		</ul>
+		<h3>Hasil Pencarian "{{ $keyword }}"</h3>
 		<div class="row">
 			@foreach ($karya as $karyaku)
 		        <div class="col-lg-3 col-md-4 col-6">
@@ -37,7 +33,6 @@
 				</div>
 		    @endforeach
 		</div>
-
 		<div class="d-flex justify-content-center mt-3">
 			{{ $karya->links() }}
 		</div>
