@@ -198,6 +198,16 @@ ul.gallery {
   color: black;
   display: block;
 }
+.karya-card .author {
+  border-top: 1px solid #F4F4F4;
+}
+.karya-card .author a {
+  padding: 10px 10px;
+  color: black;
+  font-size: 13px;
+  font-weight: 400;
+  display: block;
+}
 /*Galery Thumbnail*/
 .thumb-gallery {
   position: relative;

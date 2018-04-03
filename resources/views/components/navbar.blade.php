@@ -13,6 +13,9 @@
         <li class="nav-item">
           <a class="nav-link {{ Route::currentRouteName() == "profile" ? 'active' : '' }}" href="{{ route('profile') }}">Profile</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Route::currentRouteName() == "explore" ? 'active' : '' }}" href="{{ route('explore') }}">Jelajah</a>
+        </li>
         <li>
             <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();

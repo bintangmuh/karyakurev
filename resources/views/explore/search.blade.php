@@ -12,12 +12,12 @@
 			<div class="">
 				<form action="{{ route('search') }}" method="post" class="form-inline">
 					{{ csrf_field() }}
-					<input type="text" class="form-control" name="search" placeholder="Pencarian ... ">
+					<input type="text" class="form-control" name="search" placeholder="Pencarian ... " value="{{ $keyword }}">
 					<button class="btn btn-light"><i class="fa fa-search"></i></button>
 				</form>
 			</div>
 		</div>
-		
+
 		<h3>Hasil Pencarian "{{ $keyword }}"</h3>
 		<div class="row">
 			@foreach ($karya as $karyaku)
@@ -27,7 +27,10 @@
 							<img src="{{ ($karyaku->img_thumb != NULL ) ? asset($karyaku->img_thumb) : asset('img/noimage.png')}}" class="img-fluid">
 						</div>
 						<div class="name">
-							<a href="{{ route('karya.tampil', ['karya' => $karyaku]) }}" class="title">{{ $karyaku->nama }}</a>
+							<a href="{{ route('karya.tampil', ['karya' => App\Karya::find($karyaku->id)]) }}" class="title">{{ $karyaku->nama }}</a>
+						</div>
+						<div class="author">
+							<a href="" class="title">{{ $karyaku->name }}</a>
 						</div>
 					</div>
 				</div>
