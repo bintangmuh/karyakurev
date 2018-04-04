@@ -68,7 +68,7 @@
 									@endif
 									<div class="detail">
 										<span><a href="{{ route('user.profile', ['user' => $karya->user]) }}" class="nama">{{ $karya->user->name }}</a></span>
-										<span class="prodi">{{ $karya->user->prodi }}</span>
+										<span class="prodi">{{ $karya->user->prodi->nama }}</span>
 									</div>
 								</div>
 							</div>

@@ -32,6 +32,6 @@ class CreateTableTagsKarya extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tagskarya');
+        Schema::dropIfExists('tags_karya');
     }
 }

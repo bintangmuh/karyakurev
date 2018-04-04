@@ -9,7 +9,7 @@
                     <img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle" alt=""> <br>
                     <b>{{ Auth::user()->name }}</b> <br>
                     {{ Auth::user()->nim }} <br>
-                    {{ Auth::user()->prodi }}
+                    {{ Auth::user()->prodi->nama }}
                 </div>
             </div>
             <a href="{{ route('karya.buatview') }}" class="btn btn-primary btn-block mt-3 mb-3"><i class="fa fa-file"></i> Tambah Karya Baru</a>

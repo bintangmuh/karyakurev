@@ -17,7 +17,7 @@
 						<a href="{{ route('user.edit') }}" class="btn btn-sm btn-info"><i class="fa fa-pencil-alt"></i> Sunting Profil</a>
 					@endif</span>
 					<span class="line nim">{{ $user->nim }}</span>
-					<span class="line prodi">{{ $user->prodi }}</span>
+					<span class="line prodi">{{ $user->prodi->nama }}</span>
 				</div>	
 				
 			</div>

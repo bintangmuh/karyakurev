@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function karya() {
         return $this->hasMany('App\Karya', 'user_id');
     }
+
+    public function prodi() {
+        return $this->belongsTo('App\Prodi', 'prodi_id');
+    }
 }
