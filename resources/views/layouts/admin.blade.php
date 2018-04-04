@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ asset('/css/admin/style.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/css/fontawesome-all.min.css') }}">
         <link rel="shortcut icon" href="{{ asset('/img/favicon.png') }}" type="image/x-icon">
+        @stack('css')
         <meta name="theme-color" content="#0093E9">
         <title>@yield('title') Administrator Karyaku</title>
         <style>

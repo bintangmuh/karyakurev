@@ -38,22 +38,22 @@
 		<nav class="sidebar-nav">
 			<ul class="nav">
 				<li class="nav-item">
-					<a class="nav-link" href="main.html"><i class="fa fa-home"></i> Dashboard <span class="badge badge-primary">NEW</span></a>
+					<a class="nav-link" href="{{ route('admin.index')}}"><i class="fa fa-home"></i> Dashboard <span class="badge badge-primary">NEW</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="main.html"><i class="fa fa-flag"></i> Laporan</a>
+					<a class="nav-link" href="{{ route('admin.report')}}"><i class="fa fa-flag"></i> Laporan</a>
 				</li>
 				<li class="nav-title">
 					Pengaturan Data
 				</li>
 				<li class="nav-item">
-					<a href="colors.html" class="nav-link"><i class="fa fa-tag"></i> Tags</a>
+					<a href="{{ route('admin.tags')}}" class="nav-link"><i class="fa fa-tag"></i> Tags</a>
 				</li>
 				<li class="nav-item">
-					<a href="colors.html" class="nav-link"><i class="fa fa-graduation-cap"></i> Program Studi</a>
+					<a href="{{ route('admin.prodi')}}" class="nav-link"><i class="fa fa-graduation-cap"></i> Program Studi</a>
 				</li>
 				<li class="nav-item">
-					<a href="colors.html" class="nav-link"><i class="fa fa-user"></i> User</a>
+					<a href="{{ route('admin.user')}}" class="nav-link"><i class="fa fa-user"></i> Administrator</a>
 				</li>
 			</ul>
 		</nav>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 /*
 |--------------------------------------------------------------------------
@@ -59,10 +59,11 @@ Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
 
 // Admin route 
 
-Route::group(['prefix' => 'admin', 'as' => 'admin', 'middleware'=> 'auth'], function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=> 'auth'], function() {
     Route::get('/', 'AdminController@index')->name('index');
-    Route::get('/report', 'AdminController@index')->name('index');
-    Route::get('/tags', 'AdminController@index')->name('index');
-    Route::get('/prodi', 'AdminController@index')->name('index');
-    Route::get('/user', 'AdminController@index')->name('index');
+    Route::get('/report', 'AdminController@index')->name('report');
+    Route::get('/tags', 'AdminController@tagView')->name('tags');
+    Route::get('/prodi', 'AdminController@prodiView')->name('prodi');
+    Route::get('/user', 'AdminController@adminView')->name('user');
+    Route::get('/login', 'AdminController@index')->name('login');
 });

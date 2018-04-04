@@ -2,6 +2,12 @@
 
 @section('title', 'Sunting Profil - ')
 
+@push('css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+@endpush
+
 @section('body')
 <div class="container">
 	<div class="row d-flex justify-content-center">
@@ -44,7 +50,11 @@
 						<div class="form-group row">
 							<label for="prodi" class="col-md-3">Program Studi</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control  {{ $errors->has('prodi') ? ' is-invalid ' : '' }}" id="prodi" name="prodi" value="{{ $user->prodi }}">
+								<select name="prodi" class="form-control" id="prodi">
+									@foreach ($prodiList as $prodi)
+										<option value="{{ $prodi->id }}" {{ $prodi->id == $user->prodi_id ? 'selected' : '' }}>{{ $prodi->nama }}</option>
+									@endforeach
+								</select>
 								@if ($errors->has('prodi'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('prodi') }}</strong>
@@ -87,3 +97,12 @@
 	</div>
 </div>
 @endsection
+
+@push('js')
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  	<script>
+		$(document).ready(function() {
+			$('#prodi').select2();
+		});
+  	</script>
+@endpush

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Validator;
 use App\User as User;
+use App\Prodi;
 use Session;
 
 class ProfileController extends Controller
@@ -29,7 +30,8 @@ class ProfileController extends Controller
 
     public function editview()
     {
-    	return view('user.edit', ['user' => Auth::user() ]);
+        $prodiList = Prodi::all();
+    	return view('user.edit', ['user' => Auth::user(), 'prodiList' => $prodiList ]);
     }
     public function edit(Request $request)
     {
@@ -48,8 +50,8 @@ class ProfileController extends Controller
 
     	$user->name = $request->name;
     	$user->nim = $request->nim;
-    	$user->prodi = $request->prodi;
-    	$user->email = $request->email;
+        $user->email = $request->email;
+    	$user->prodi_id = $request->prodi;
 
     	$user->save();
     	Session::flash('success', 'Profil telah diperbaharui!');
