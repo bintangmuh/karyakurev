@@ -2,25 +2,14 @@
 	<button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
 	<span class="navbar-toggler-icon"></span>
 	</button>
-	<a class="navbar-brand" href="#"><img src="{{ asset('/img/karyaku-full-200px.png') }}" alt="karyaku logo" height="30" class="img-responsive"></a>
+	<a class="navbar-brand" href="#" style="overflow: hidden"><img src="{{ asset('/img/karyaku-full-200px.png') }}" alt="karyaku logo" height="30" class="img-responsive"></a>
 	<button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">
 	<span class="navbar-toggler-icon"></span>
 	</button>
-	<ul class="nav navbar-nav d-md-down-none">
-		<li class="nav-item px-3">
-			<a class="nav-link" href="#">Dashboard</a>
-		</li>
-		<li class="nav-item px-3">
-			<a class="nav-link" href="#">Users</a>
-		</li>
-		<li class="nav-item px-3">
-			<a class="nav-link" href="#">Settings</a>
-		</li>
-	</ul>
 	<ul class="nav navbar-nav ml-auto">
 		<li class="nav-item dropdown">
 			<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-				<img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+				<img src="{{ asset('img/noimage.png') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">
 				<div class="dropdown-header text-center">
@@ -44,10 +33,10 @@
 					<a class="nav-link" href="{{ route('admin.report')}}"><i class="fa fa-flag"></i> Laporan</a>
 				</li>
 				<li class="nav-title">
-					Pengaturan Data
+					Pangkalan Data
 				</li>
 				<li class="nav-item">
-					<a href="{{ route('admin.tags')}}" class="nav-link"><i class="fa fa-tag"></i> Tags</a>
+					<a href="{{ route('admin.tags')}}" class="nav-link"><i class="fa fa-tags"></i> Tags</a>
 				</li>
 				<li class="nav-item">
 					<a href="{{ route('admin.prodi')}}" class="nav-link"><i class="fa fa-graduation-cap"></i> Program Studi</a>

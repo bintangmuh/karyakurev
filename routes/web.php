@@ -27,8 +27,8 @@ Route::get('/explore', 'ExploreController@explore')->name('explore')->middleware
 Route::get('/search/{query}', 'ExploreController@searchGet')->name('searchGet')->middleware('web');
 Route::post('/search', 'ExploreController@search')->name('search')->middleware('web');
 Route::get('/search', 'ExploreController@explore')->name('search')->middleware('web');
-Route::get('/tags/{tag}', 'ExploreController@tags')->name('explore.tags')->middleware('auth');
-Route::get('/prodi', 'ExploreController@index')->name('explore.home')->middleware('auth');
+Route::get('/tags/{tag}', 'ExploreController@tags')->name('explore.tags')->middleware('web');
+Route::get('/prodi', 'ExploreController@index')->name('explore.home')->middleware('web');
 
 Route::get('/profile', 'ProfileController@view')->name('profile')->middleware('auth');
 
@@ -52,6 +52,7 @@ Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
     Route::get('{karya}/edit', 'KaryaController@edit')->name('editview')->middleware('auth', 'can:update,karya');
     Route::post('{karya}/edit', 'KaryaController@update')->name('edit')->middleware('auth', 'can:update,karya');
     Route::get('{karya}/delete', 'KaryaController@delete')->name('delete')->middleware('auth', 'can:update,karya');
+    Route::get('{karya}/report', 'KaryaController@report')->name('delete')->middleware('auth', 'can:update,karya');
     
     // penampil karya
     Route::get('{karya}', 'KaryaController@show')->name('tampil');
@@ -61,9 +62,12 @@ Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=> 'auth'], function() {
     Route::get('/', 'AdminController@index')->name('index');
-    Route::get('/report', 'AdminController@index')->name('report');
+    Route::get('/report', 'AdminController@reportView')->name('report');
+    Route::post('/tags', 'AdminController@tagPost')->name('tags.post');
     Route::get('/tags', 'AdminController@tagView')->name('tags');
+    Route::get('/tags/{tags}/delete', 'AdminController@tagDelete')->name('tags.delete');
     Route::get('/prodi', 'AdminController@prodiView')->name('prodi');
+    Route::post('/prodi', 'AdminController@prodiPost')->name('prodi.post');
     Route::get('/user', 'AdminController@adminView')->name('user');
     Route::get('/login', 'AdminController@index')->name('login');
 });
