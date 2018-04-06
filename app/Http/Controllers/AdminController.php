@@ -37,12 +37,28 @@ class AdminController extends Controller
     }
 
     public function prodiEdit(Request $request, Prodi $prodi) {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            Session::flash('error', 'nama program studi baru tidak boleh kosong'); 
+            return redirect()->route('admin.prodi');
+        }
+
+        $prodi->nama = $request->nama;
+        $prodi->fakultas = $request->fakultas;
+        $prodi->save();
+
+        Session::flash('success', 'Mengganti Program Studi : <b>' . $prodi->nama . ' - '. $prodi->fakultas .'</b>' ); 
+        return redirect()->route('admin.prodi');
 
     }
 
     public function prodiDelete(Prodi $prodi) {
         $prodi->delete();
-
+        Session::flash('success', '<i class="fa fa-trash"></i> Berhasil menghapus Program Studi : <b>' . $prodi->nama . ' - '. $prodi->fakultas .'</b>' ); 
+        return redirect()->route('admin.prodi');
     }
 
     public function tagView() {
