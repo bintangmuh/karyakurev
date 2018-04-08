@@ -10,12 +10,14 @@
 
 @section('body')	
 	<div class="container">
-		@if (Auth::user()->id == $karya->user_id)
-			<div class="row mt-3 mb-3">
-				<div class="col-12 text-right">
-					<a href="{{ route('karya.editview', ['karya' => $karya]) }}" class="btn btn-primary"><i class="fa fa-pencil-alt"></i> Sunting Karya</a>
+		@if (Auth::check())
+			@if (Auth::user()->id == $karya->user_id)
+				<div class="row mt-3 mb-3">
+					<div class="col-12 text-right">
+						<a href="{{ route('karya.editview', ['karya' => $karya]) }}" class="btn btn-primary"><i class="fa fa-pencil-alt"></i> Sunting Karya</a>
+					</div>
 				</div>
-			</div>
+			@endif
 		@endif
 		<div class="row">
 			<div class="col-12">

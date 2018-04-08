@@ -15,9 +15,12 @@
 				@endif	
 				<div class="media-body">
 					<span class="line nama">{{ $user->name }} 
-					@if (Auth::user()->id == $user->id)
-						<a href="{{ route('user.edit') }}" class="btn btn-sm btn-info"><i class="fa fa-pencil-alt"></i> Sunting Profil</a>
-					@endif</span>
+					@if (Auth::check())
+						@if (Auth::user()->id == $user->id)
+							<a href="{{ route('user.edit') }}" class="btn btn-sm btn-info"><i class="fa fa-pencil-alt"></i> Sunting Profil</a>
+						@endif
+					@endif
+					</span>
 					<span class="line nim">{{ $user->nim }}</span>
 					<span class="line prodi">{{ $user->prodi->nama }}</span>
 					<span class="line mt-2"> <i class="fa fa-file-alt"></i> {{ $user->karya->count() }} Karya telah diunggah</span>
