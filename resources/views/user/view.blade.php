@@ -31,7 +31,7 @@
 				<div class="col-lg-4 col-md- col-6" v-for="karya in data">
 					<div class="karya-card">
 						<div class="img-thumbs">
-							<img src="{{ asset('img/noimage.png')}}" class="img-fluid">
+							<img :src="'{{ url('/') }}' + (karya.img_thumb == null ? '/img/noimage.png' : karya.img_thumb)" class="img-fluid">
 						</div>
 						<div class="name">
 							<a :href="'{{ url("/karya/") }}/'+ karya.id" class="title">@{{ karya.nama }}</a>

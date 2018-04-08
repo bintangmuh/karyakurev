@@ -25,7 +25,7 @@
                     @endif
                     <div class="media-newsfeed" v-for="karya in data">
                         <div class="media">
-                            <a :href="'{{ url("/karya/") }}/'+ karya.id"><img class="mr-3 img-thumbnail" src="{{ asset('img/noimage.png') }}" width="50px"></a>
+                            <a :href="'{{ url("/karya/") }}/'+ karya.id"><img class="mr-3 img-thumbnail" :src="'{{ url('/') }}' + (karya.img_thumb == null ? '/img/noimage.png' : karya.img_thumb)" width="50px"></a>
                             <div class="media-body">
                                 <span class="title"><a :href="'{{ url("/karya/") }}/'+ karya.id"><b>@{{ karya.nama }}</b></a></span>
                                 <span class="date"><i class="fa fa-calendar-alt"></i> @{{ karya.created_at | dateFormat }} oleh <a :href="'{{ url("/profile/") }}/'+ karya.user.id">@{{ karya.user.name }}</a></span>
