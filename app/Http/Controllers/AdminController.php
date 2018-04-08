@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Prodi;
 use App\Tags;
+use App\Admin;
 use Session;
 use Validator;
 use Illuminate\Http\Request;
@@ -11,6 +12,10 @@ class AdminController extends Controller
 {
     public function index() {
     	return view('admin.index');
+    }
+
+    public function loginView() {
+        return view('admin.login');
     }
 
     public function prodiView() {
@@ -92,6 +97,52 @@ class AdminController extends Controller
     }
 
     public function adminView() {
-    	return view('admin.index');
+        $admin = Admin::all();
+    	return view('admin.list', ['admin' => $admin]);
+    }
+
+    public function changePassword(Request $request, Admin $admin) {
+        $validator = Validator::make($request->all(), [
+            'newpassword' => 'required|min:5',
+        ]);
+
+        if($validator->fails()) {
+            Session::flash('error', 'password untuk ' . $admin->username. 'tidak boleh kosong'); 
+            return redirect()->route('admin.user');
+        }
+
+        Session::flash('success', '<i class="fa fa-key"></i> Sukses mengganti password'); 
+        return redirect()->route('admin.user');
+
+    }
+
+    public function deleteAdmin(Admin $admin){
+        $admin->delete();
+        Session::flash('success', '<i class="fa fa-trash"></i> Sukses menghapus admin - <b>'. $admin->username .'</b>'); 
+        return redirect()->route('admin.user');
+    }
+    public function registerAdmin(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|alpha_dash|unique:admin',
+            'name' => 'required|max:144',
+            'email' => 'required|email',
+            'password' => 'required|min:5',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $admin = Admin::create([
+            'username' => $request->username,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->username)
+        ]);
+
+        Session::flash('success', 'Sukses menambah administrator'); 
+        return redirect()->route('admin.user');
     }
 }

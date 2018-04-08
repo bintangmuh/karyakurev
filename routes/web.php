@@ -59,9 +59,15 @@ Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
 });
 
 // Admin route 
+Route::get('admin/login', 'AdminController@loginView')->name('admin.login');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=> 'auth'], function() {
     Route::get('/', 'AdminController@index')->name('index');
+    Route::get('/admin', 'AdminController@adminView')->name('user');
+    Route::post('/admin/{admin}/edit', 'AdminController@changePassword')->name('user.edit');
+    Route::get('/admin/{admin}/delete', 'AdminController@deleteAdmin')->name('user.delete');
+    Route::get('/admin', 'AdminController@adminView')->name('user');
+    Route::post('/admin', 'AdminController@registerAdmin')->name('user.post');
     Route::get('/report', 'AdminController@reportView')->name('report');
     Route::post('/tags', 'AdminController@tagPost')->name('tags.post');
     Route::get('/tags', 'AdminController@tagView')->name('tags');
@@ -70,6 +76,4 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=> 'auth'], fun
     Route::post('/prodi', 'AdminController@prodiPost')->name('prodi.post');
     Route::post('/prodi/{prodi}/edit', 'AdminController@prodiEdit')->name('prodi.edit');
     Route::get('/prodi/{prodi}/delete', 'AdminController@prodiDelete')->name('prodi.delete');
-    Route::get('/user', 'AdminController@adminView')->name('user');
-    Route::get('/login', 'AdminController@index')->name('login');
 });
