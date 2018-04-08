@@ -57,6 +57,28 @@
                                 @endif
                             </div>
                         </div>
+                        
+                        <div class="form-group row">
+                            <label for="prodi" class="col-md-4 control-label">Program Studi</label>
+
+                            <div class="col-md-8">
+                               <select name="prodi" class="form-control {{ $errors->has('prodi') ? ' is-invalid ' : '' }}" id="prodi">
+                                   @php
+                                       $prodilist = App\Prodi::all();
+                                   @endphp
+
+                                   @foreach ($prodilist as $prodi)
+                                       <option value="{{ $prodi->id }}">{{ $prodi->nama }}</option>
+                                   @endforeach
+                               </select>
+
+                                @if ($errors->has('prodi'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('prodi') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 control-label">Password</label>
