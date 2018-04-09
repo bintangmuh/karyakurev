@@ -72,7 +72,11 @@
 										<span><a href="{{ route('user.profile', ['user' => $karya->user]) }}" class="nama">{{ $karya->user->name }}</a></span>
 										<span class="prodi">{{ $karya->user->prodi->nama }}</span>
 									</div>
+									
 								</div>
+								<p class="mt-3">
+									<a href="{{ route('report', ['karya' => $karya])}}" class="btn btn-primary btn-sm btn-block"><i class="fa fa-exclamation-triangle"></i>  Laporkan karya ini</a>
+								</p>
 							</div>
 						</div>
 					</div>

@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
-    //
+    protected $table = 'reports';
+    protected $fillable  = ['alasan', 'pelapor', 'karya_id'];
 }

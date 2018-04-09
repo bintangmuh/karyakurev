@@ -38,6 +38,8 @@ Route::post('/profile/edit', 'ProfileController@edit')->name('user.postedit')->m
 Route::get('/profile/{user}', 'ProfileController@viewUser')->name('user.profile')->middleware('web');
 Route::get('/profile/{user}/karya', 'ProfileController@viewKaryaUser')->name('user.karya')->middleware('web');
 
+Route::get('/report/{karya}', 'ReportController@reportView')->name('report');
+Route::post('/report/{karya}', 'ReportController@reportPost')->name('report.post');
 // Route arya
 Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
 
