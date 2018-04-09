@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Prodi;
 use App\Tags;
 use App\Admin;
+use App\Report;
 use Session;
 use Validator;
 use Illuminate\Http\Request;
@@ -93,7 +94,24 @@ class AdminController extends Controller
     }
 
     public function reportView() {
-    	return view('admin.laporan');
+        $report = Report::all();
+    	return view('admin.laporan', ['reports' => $report]);
+    }
+
+    public function deleteReport(Report $report) {
+        $report->delete();
+        Session::flash('success', '<i class="fa fa-trash"></i> Sukses menghapus laporan'); 
+        return redirect()->route('admin.report');
+    }
+
+    public function deleteUserFromReport(Report $report) {
+        $report->delete();
+        return redirect()->route('');
+    }
+
+    public function deleteKaryaFromReport(Report $report) {
+        $report->delete();
+        return redirect()->route('');
     }
 
     public function adminView() {

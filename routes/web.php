@@ -71,6 +71,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=> 'auth'], fun
     Route::get('/admin', 'AdminController@adminView')->name('user');
     Route::post('/admin', 'AdminController@registerAdmin')->name('user.post');
     Route::get('/report', 'AdminController@reportView')->name('report');
+    Route::get('/report/{report}/delete', 'AdminController@deleteReport')->name('report.delete');
     Route::post('/tags', 'AdminController@tagPost')->name('tags.post');
     Route::get('/tags', 'AdminController@tagView')->name('tags');
     Route::get('/tags/{tags}/delete', 'AdminController@tagDelete')->name('tags.delete');
