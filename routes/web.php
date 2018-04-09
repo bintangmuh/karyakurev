@@ -61,20 +61,32 @@ Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
 });
 
 // Admin route 
-Route::get('admin/login', 'AdminController@loginView')->name('admin.login');
+Route::get('admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+Route::post('admin/login', 'Auth\AdminLoginController@login')->name('admin.login.post');
+Route::get('admin/logout', 'Auth\AdminLoginController@logout')->name('admin.logout')->middleware('auth:admin');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=> 'auth'], function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=> 'auth:admin'], function() {
+    
+    //admin dashboard
     Route::get('/', 'AdminController@index')->name('index');
+    
+    //manajemen administrator
     Route::get('/admin', 'AdminController@adminView')->name('user');
     Route::post('/admin/{admin}/edit', 'AdminController@changePassword')->name('user.edit');
     Route::get('/admin/{admin}/delete', 'AdminController@deleteAdmin')->name('user.delete');
     Route::get('/admin', 'AdminController@adminView')->name('user');
     Route::post('/admin', 'AdminController@registerAdmin')->name('user.post');
+    
+    //manajemen report, hapus karya, hapus user
     Route::get('/report', 'AdminController@reportView')->name('report');
     Route::get('/report/{report}/delete', 'AdminController@deleteReport')->name('report.delete');
+    
+    //manajemen tags
     Route::post('/tags', 'AdminController@tagPost')->name('tags.post');
     Route::get('/tags', 'AdminController@tagView')->name('tags');
     Route::get('/tags/{tags}/delete', 'AdminController@tagDelete')->name('tags.delete');
+
+    // manajemen Prodi
     Route::get('/prodi', 'AdminController@prodiView')->name('prodi');
     Route::post('/prodi', 'AdminController@prodiPost')->name('prodi.post');
     Route::post('/prodi/{prodi}/edit', 'AdminController@prodiEdit')->name('prodi.edit');

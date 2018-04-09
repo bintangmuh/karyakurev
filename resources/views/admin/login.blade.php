@@ -19,23 +19,34 @@
 							<div class="card-body text-center">
 								<img src="{{ asset('img/karyaku-full-200px.png') }}" alt="Karyaku" class="img-fluid mb-4" style="max-width: 150px;">
 								<p class="text-muted">Login ke administrator</p>
-								<form action="" class="row">
+								<form action="{{ route('admin.login.post') }}" class="row" method="POST">
 									{{ csrf_field() }}
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fa fa-user"></i></span>
 										</div>
-										<input type="text" class="form-control" placeholder="Username">
+										<input type="text" class="form-control {{ $errors->has('username') ? ' is-invalid ' : '' }}" name="username" placeholder="Username" value="{{ old('username') }}">
+										@if ($errors->has('email'))
+		                                    <span class="invalid-feedback">
+		                                        <strong>{{ $errors->first('email') }}</strong>
+		                                    </span>
+		                                @endif
 									</div>
 									<div class="input-group mb-4">
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="fa fa-lock"></i></span>
 										</div>
-										<input type="password" class="form-control" placeholder="Password">
+										<input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid ' : '' }}" name="password" placeholder="Password">
+
+										@if ($errors->has('password'))
+		                                    <span class="invalid-feedback">
+		                                        <strong>{{ $errors->first('password') }}</strong>
+		                                    </span>
+		                                @endif
 									</div>
 									<div class="row">
 										<div class="col-12">
-											<button type="button" class="btn btn-primary px-4 btn-block">Login</button>
+											<button type="submit" class="btn btn-primary px-4 btn-block">Login</button>
 										</div>
 									</div>
 								</form>

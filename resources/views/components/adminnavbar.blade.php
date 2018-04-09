@@ -16,7 +16,7 @@
 					<strong>Settings</strong>
 				</div>
 				<div class="divider"></div>
-				<a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+				<a class="dropdown-item" href="{{ route('admin.logout')}}"><i class="fa fa-lock"></i> Logout</a>
 			</div>
 		</li>
 	</ul>
