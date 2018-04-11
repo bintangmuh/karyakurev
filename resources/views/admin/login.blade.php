@@ -26,9 +26,9 @@
 											<span class="input-group-text"><i class="fa fa-user"></i></span>
 										</div>
 										<input type="text" class="form-control {{ $errors->has('username') ? ' is-invalid ' : '' }}" name="username" placeholder="Username" value="{{ old('username') }}">
-										@if ($errors->has('email'))
+										@if ($errors->has('username'))
 		                                    <span class="invalid-feedback">
-		                                        <strong>{{ $errors->first('email') }}</strong>
+		                                        <strong>{{ $errors->first('username') }}</strong>
 		                                    </span>
 		                                @endif
 									</div>

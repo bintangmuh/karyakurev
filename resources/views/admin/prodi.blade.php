@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @push('css')
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 @endpush
 @section('content')
 <div class="container" id="app">
@@ -47,7 +47,7 @@
 		</div>
 	</div>
 	<div class="card mt-4">
-		<div class="card-body">
+		<div class="pt-4 pb-4">
 			<table class="table table-hover table-striped">
 				<thead>
 					<tr>
@@ -139,6 +139,7 @@
 @endsection
 @push('js')
 <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script>
 	$(document).ready( function () {
 	    $('.table').DataTable();

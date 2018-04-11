@@ -9,23 +9,26 @@
 	<div class="row d-flex justify-content-center">
 		
 		<div class="col-lg-8 card">
-			<div class="col-12 pt-3 pb-3 media profil-box">
-				@if ($user->profilimg == NULL)
-					<img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle mr-3" alt=""><br>
-				@endif	
-				<div class="media-body">
-					<span class="line nama">{{ $user->name }} 
-					@if (Auth::check())
-						@if (Auth::user()->id == $user->id)
-							<a href="{{ route('user.edit') }}" class="btn btn-sm btn-info"><i class="fa fa-pencil-alt"></i> Sunting Profil</a>
+			<div class="row">
+				<div class="col-12 pt-3 pb-3 media profil-box">
+					@if ($user->profilimg == NULL)
+						<img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle mr-3" alt=""><br>
+					@endif	
+					<div class="media-body">
+						<span class="line nama">{{ $user->name }} 
+						@if (Auth::check())
+							@if (Auth::user()->id == $user->id)
+								<a href="{{ route('user.edit') }}" class="btn btn-sm btn-info"><i class="fa fa-pencil-alt"></i> Sunting Profil</a>
+							@endif
 						@endif
-					@endif
-					</span>
-					<span class="line nim">{{ $user->nim }}</span>
-					<span class="line prodi">{{ $user->prodi->nama }}</span>
-					<span class="line mt-2"> <i class="fa fa-file-alt"></i> {{ $user->karya->count() }} Karya telah diunggah</span>
-				</div>	
+						</span>
+						<span class="line nim">{{ $user->nim }}</span>
+						<span class="line prodi">{{ $user->prodi->nama }}</span>
+						<span class="line mt-2"> <i class="fa fa-file-alt"></i> {{ $user->karya->count() }} Karya telah diunggah</span>
+					</div>	
+				</div>
 			</div>
+
 
 			<div class="row mt-4 mb-4">
 				<div class="col-lg-4 col-md- col-6" v-for="karya in data">

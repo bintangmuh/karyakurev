@@ -66,7 +66,7 @@
 							<div class="col-lg-3 pt-3 pb-3 profiler profil">
 								<div class="profil-karya">
 									@if ($karya->user->profilimg == NULL)
-										<img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle mb-3" alt="">
+										<img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle mb-2" alt="">
 									@endif
 									<div class="detail">
 										<span><a href="{{ route('user.profile', ['user' => $karya->user]) }}" class="nama">{{ $karya->user->name }}</a></span>

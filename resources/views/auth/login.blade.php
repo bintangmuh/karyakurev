@@ -57,17 +57,12 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Lupa password anda?
-                                </a>
-                            </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <p style="margin: 10px 0px;" class="text-center">Belum memiliki akun? Silahkan <a href="{{ url('register') }}">Daftar</a></p>
         </div>
+        <p style="margin: 10px 0px" class="text-center">Belum memiliki akun? Silahkan <a href="{{ url('register') }}">Daftar</a></p>
     </div>
 </div>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @push('css')
-	<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 @endpush
 
 @section('content')
@@ -13,8 +13,8 @@
 				<i class="fa fa-check"></i>{!! Session::get('success') !!}
 			</div>
 			@endif
-			<div class="card-body">
-				<table class="table table-hover">
+			<div class="pt-4 pb-4">
+				<table class="table table-hover table-striped">
 					<thead>
 						<tr>
 							<th>No.</th>
@@ -36,6 +36,7 @@
 								<td>{{ $report->pelapor }}</td>
 								<td>{{ $report->created_at->format('d M Y - H:i') }}</td>
 								<td class="text-right">
+									<button class="btn btn-primary" data-toggle="modal" data-target="#moderationModal"><i class="fa fa-ellipsis-v"></i></button>
 									<a href="{{ route('admin.report.delete', ['report' => $report]) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 								</td>
 							</tr>
@@ -65,6 +66,31 @@
 			</div>
 		</div>
 		{{-- Modal Delete User --}}
+		<div class="modal fade" id="moderationModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-exclamation-triangle"></i> Moderasi Karya</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-12 mb-3">
+								Delete Karya
+							</div>
+							<div class="col-12 ml-auto">
+								Delete User
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		{{-- Modal Delete Report --}}
 	</div>
 
@@ -72,6 +98,7 @@
 
 @push('js')
 	<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 	<script>
 		$(document).ready( function () {
 		    $('.table').DataTable();

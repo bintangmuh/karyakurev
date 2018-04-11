@@ -243,9 +243,8 @@ css box samping karya
   justify-content: flex-start;
 }
 .profil-karya img {
-  width: 100%;
   max-width: 60px;
-  height: auto;
+  height: 60px;
   margin-right: 10px;
 }
 .profil-karya .detail {

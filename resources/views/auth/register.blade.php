@@ -110,9 +110,9 @@
                             </div>
                         </div>
                     </form>
-                    Sudah memiliki akun? <a href="{{ url('/login') }}">Masuk</a>
                 </div>
             </div>
+            <p class="mt-2 mb-4 text-center"> Sudah memiliki akun? <a href="{{ url('/login') }}">Masuk</a></p>
         </div>
     </div>
 </div>
