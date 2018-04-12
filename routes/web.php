@@ -80,6 +80,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=> 'auth:admin'
     //manajemen report, hapus karya, hapus user
     Route::get('/report', 'AdminController@reportView')->name('report');
     Route::get('/report/{report}/delete', 'AdminController@deleteReport')->name('report.delete');
+    Route::get('/report/user/{user}/delete', 'AdminController@deleteUserFromReport')->name('report.user');
+    Route::get('/report/karya/{karya}/delete', 'AdminController@deleteKaryaFromReport')->name('report.karya');
+    Route::get('/report/restore/user/{user}', 'AdminController@restoreUser')->name('report.restore.user');
+    Route::get('/report/restore/karya/{karya}', 'AdminController@restoreKarya')->name('report.restore.karya');
+    Route::get('/report/blockeduser', 'AdminController@blockedUser')->name('report.blocked.user');
+    Route::get('/report/blockedkarya', 'AdminController@blockedKarya')->name('report.blocked.karya');
     
     //manajemen tags
     Route::post('/tags', 'AdminController@tagPost')->name('tags.post');

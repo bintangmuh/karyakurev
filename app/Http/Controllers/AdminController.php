@@ -5,6 +5,8 @@ use App\Prodi;
 use App\Tags;
 use App\Admin;
 use App\Report;
+use App\User;
+use App\Karya;
 use Session;
 use Validator;
 use Illuminate\Http\Request;
@@ -13,10 +15,6 @@ class AdminController extends Controller
 {
     public function index() {
     	return view('admin.index');
-    }
-
-    public function loginView() {
-        return view('admin.login');
     }
 
     public function prodiView() {
@@ -104,14 +102,42 @@ class AdminController extends Controller
         return redirect()->route('admin.report');
     }
 
-    public function deleteUserFromReport(Report $report) {
-        $report->delete();
-        return redirect()->route('');
+    public function deleteUserFromReport(User $user) {
+        $karya = Karya::where('user_id', $user->id)->delete();
+        $user->delete();
+        Session::flash('success', '<i class="fa fa-trash"></i> Sukses memblokir pengguna dari laporan'); 
+        return redirect()->route('admin.report');
     }
 
-    public function deleteKaryaFromReport(Report $report) {
-        $report->delete();
-        return redirect()->route('');
+    public function restoreUser($user)
+    {
+        User::withTrashed()->find($user)->restore();
+        Karya::withTrashed()->where('user_id', $user)->restore();
+        Session::flash('success', 'Sukses mengembalikan pengguna'); 
+        return redirect()->route('admin.report');
+    }
+
+    public function restoreKarya($karya)
+    {
+        Karya::withTrashed()->find($karya)->restore();
+        Session::flash('success', 'Sukses mengembalikan karya'); 
+        return redirect()->route('admin.report');
+    }
+
+    public function blockedUser()
+    {
+        return view('admin.blockeduser');
+    }
+
+    public function blockedKarya()
+    {
+        return view('admin.blockedkarya');
+    }
+
+    public function deleteKaryaFromReport(Karya $karya) {
+        $karya->delete();
+        Session::flash('success', '<i class="fa fa-trash"></i> Sukses memblokir karya dari laporan'); 
+        return redirect()->route('admin.report');
     }
 
     public function adminView() {

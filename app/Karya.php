@@ -1,11 +1,14 @@
 <?php
 
 namespace App;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Karya extends Model
 {
+
+	use SoftDeletes;
+	
     protected $table = "karya";
 
 	public function gallery() {
@@ -17,7 +20,7 @@ class Karya extends Model
 	}
 
 	public function user() {
-		return $this->belongsTo('App\User', 'user_id');
+		return $this->belongsTo('App\User', 'user_id')->withTrashed();
 	}
 
 	public function tags() {

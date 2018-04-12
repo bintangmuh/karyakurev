@@ -11,6 +11,6 @@ class Report extends Model
 
     public function karya()
     {
-    	return $this->belongsTo('App\Karya', 'karya_id', 'id');
+    	return $this->belongsTo('App\Karya', 'karya_id', 'id')->withTrashed();
     }
 }

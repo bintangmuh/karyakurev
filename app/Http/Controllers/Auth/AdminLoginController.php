@@ -32,7 +32,7 @@ class AdminLoginController extends Controller
     	}
 
     	// unsuccessfull attempt
-    	return redirect()->back()->withInput($request->only('username'));
+    	return redirect()->back()->withInput($request->only('username'))->withErrors();
     }
 
     // logout
