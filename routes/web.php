@@ -13,11 +13,7 @@
 
 Route::get('/', function () {
     return view('indexpage');
-});
-
-Route::get('/index', function () {
-    return view('indexpage');
-});
+})->middleware('guest');
 
 Auth::routes();
 
@@ -34,6 +30,8 @@ Route::get('/profile', 'ProfileController@view')->name('profile')->middleware('a
 
 Route::get('/profile/edit', 'ProfileController@editview')->name('user.edit')->middleware('auth');
 Route::post('/profile/edit', 'ProfileController@edit')->name('user.postedit')->middleware('auth');
+Route::post('/profile/photo', 'ProfileController@changeProfileImg')->name('user.upload')->middleware('auth');
+Route::post('/profile/edit/password', 'ProfileController@changePassword')->name('user.changepass')->middleware('auth');
 
 Route::get('/profile/{user}', 'ProfileController@viewUser')->name('user.profile')->middleware('web');
 Route::get('/profile/{user}/karya', 'ProfileController@viewKaryaUser')->name('user.karya')->middleware('web');

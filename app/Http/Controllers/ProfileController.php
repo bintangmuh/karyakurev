@@ -8,6 +8,7 @@ use Validator;
 use App\User as User;
 use App\Prodi;
 use Session;
+use Image;
 
 class ProfileController extends Controller
 {
@@ -60,7 +61,39 @@ class ProfileController extends Controller
     }
     public function changeProfileImg(Request $request)
     {
-    	
+    	$validator = Validator::make($request->all(), [
+            'photo' => 'image|required|max:3000',
+        ]);
+
+        if($validator->fails()) {
+            Session::flash('error-photo', 'Terdapat errror');
+            return redirect()->back()
+                ->withErrors($validator);
+        }
+
+        $path = "/uploads/userphoto-" . Auth::user()->id . "-" . date("Ymdhis"); 
+        $uploadedFile = Image::make($request->file('photo'))
+            ->fit(100, 100, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+            ->save(public_path() . $path ."-100.jpg");
+
+        $uploadedFile = Image::make($request->file('photo'))
+            ->fit(60, 60, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+            ->save(public_path() . $path ."-60.jpg");
+
+        $user = User::find(Auth::user()->id);
+
+        $user->profil_img = $path;
+
+        $user->save();
+
+        Session::flash('success', 'Berhasil mengganti gambar profil');
+        return redirect()->route('user.edit');
     }
 
     public function changePassword(Request $request)
@@ -70,7 +103,7 @@ class ProfileController extends Controller
         ]);
 
         if($validator->fails()) {
-            Session::flash('error-password', 'Password ada yang salah');
+            Session::flash('error-password', 'Password dan konfirmasi ada yang salah');
             return redirect()->back()
                 ->withErrors($validator);
         }
@@ -79,7 +112,6 @@ class ProfileController extends Controller
         $user->password = bcrypt($request->password);
 
         Session::flash('success', 'password telah diperbaharui!');
-
         return redirect()->route('user.edit');
 
     }

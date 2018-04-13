@@ -5,6 +5,21 @@
 @endsection
 
 @push('css')
+	@component('components.social-meta')
+		@slot('title')
+		    {{ $karya->nama }}
+		@endslot
+		@slot('desc')
+		    {{ $karya->desc }}
+		@endslot
+		@slot('image')
+		    {{ ($karya->img_thumb == NULL) ? asset('img/noimage.png') : asset($karya->img_thumb)}}
+		@endslot
+		@slot('author')
+		    {{ $karya->user->name }}
+		@endslot
+	@endcomponent
+
 	<link rel="stylesheet" href="{{ asset('/css/jquery.fancybox.min.css') }}">
 @endpush
 
@@ -65,9 +80,7 @@
 							</div>
 							<div class="col-lg-3 pt-3 pb-3 profiler profil">
 								<div class="profil-karya">
-									@if ($karya->user->profilimg == NULL)
-										<img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle mb-2" alt="">
-									@endif
+									<img src="{{ $karya->user->profil_img == NULL ? asset('img/noprofilimage.png') : asset($karya->user->profil_img . '-60.jpg') }}"  class="rounded-circle mb-2" alt="">
 									<div class="detail">
 										<span><a href="{{ route('user.profile', ['user' => $karya->user]) }}" class="nama">{{ $karya->user->name }}</a></span>
 										<span class="prodi">{{ $karya->user->prodi->nama }}</span>
