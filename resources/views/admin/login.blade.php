@@ -14,12 +14,26 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-4">
+					{{-- Alert Sukses--}}
+					@if (Session::has('success'))
+						<div class="alert alert-success text-left">
+							<b>Sukses</b><br> Anda telah berhasil logout dari admin
+						</div>
+					@endif
+					{{-- Alert Error --}}		
+					@if (Session::has('error'))
+						<div class="alert alert-danger text-left">
+							<b>Gagal</b><br> Anda gagal masuk sebagai admin
+						</div>
+					@endif
 					<div class="card-group">
 						<div class="card p-4">
 							<div class="card-body text-center">
 								<img src="{{ asset('img/karyaku-full-200px.png') }}" alt="Karyaku" class="img-fluid mb-4" style="max-width: 150px;">
 								<p class="text-muted">Login ke administrator</p>
+								
 								<form action="{{ route('admin.login.post') }}" class="row" method="POST">
+									
 									{{ csrf_field() }}
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Http\Controllers\Controller;
 use Validation;
+use Session;
 
 class AdminLoginController extends Controller
 {
@@ -27,18 +28,19 @@ class AdminLoginController extends Controller
 
     	// attempt login admin
     	if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
-    		// redirect if auth
     		return redirect()->intended(route('admin.index'));
     	}
 
     	// unsuccessfull attempt
-    	return redirect()->back()->withInput($request->only('username'))->withErrors();
+        Session::flash('error', 'Data untuk login ke administrator salah'); 
+    	return redirect()->back()->withInput($request->only('username'));
     }
 
     // logout
     public function logout()
     {
     	Auth::guard('admin')->logout();
+        Session::flash('success', 'Anda berhasil logout'); 
     	return redirect()->route('admin.login');
     }
 }
