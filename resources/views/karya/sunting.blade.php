@@ -107,11 +107,11 @@
 										<img :src="image" class="img-fluid img-thumbnail mr-3" width="200px">
 									</div>
 									<div class="col-xs-6">
-										<label class="custom-file-form btn btn-light">
+										<label class="custom-file-form btn btn-light" id="form-pilih">
 											<input type="file" v-on:change="onImageChange" name="image">
 											<i class="fa fa-folder"></i> pilih gambar
 										</label><br>	
-										<button type="submit" class="btn btn-primary" @click="imageUpload" ><i class="fa fa-upload"></i> Unggah gambar</button>
+										<button type="submit" class="btn btn-primary" @click="imageUpload" id="form-upload"><i class="fa fa-upload"></i> Unggah gambar</button>
 									</div>
 								</div>
 							</form>
@@ -182,6 +182,7 @@
     $("#ld-gallery").hide();
     $("#ld-thumbs").hide();
     $("#thumbs-preview").hide();
+    $("#form-upload").hide();
 
 	var app3 = new Vue({
 		el: '#app3',
@@ -227,8 +228,8 @@
                     return;
                 this.createThumbsImage(files[0]);
 				swal({
-				  title: 'Are you sure?',
-				  text: "You won't be able to revert this!",
+				  title: 'Anda yakin mengganti thumbnail?',
+				  text: "Anda tidak bisa kembali",
 				  type: 'warning',
 				  showCancelButton: true,
 				  confirmButtonColor: '#3085d6',
@@ -253,14 +254,17 @@
 				      // The request was made and the server responded with a status code
 				      // that falls out of the range of 2xx
 				      console.log(error.response);
+   					$("#ld-thumbs").hide();
 				      swal('Kesalahan', 'error : ' + error.response.data.message, 'error');
 				    } else if (error.request) {
 				      // The request was made but no response was received
 				      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
 				      // http.ClientRequest in node.js
+   					$("#ld-thumbs").hide();
 				      console.log(error.request);
 				    } else {
 				      // Something happened in setting up the request that triggered an Error
+   					$("#ld-thumbs").hide();
 				      console.log('Error', error.message);
 				    }
 				    console.log(error.config);
@@ -274,6 +278,9 @@
                     $("#imgprev").show();
                 };
                 reader.readAsDataURL(file);
+    			$("#form-upload").show();
+    			$("#form-pilih").hide();
+
             },
             createThumbsImage(file) {
                 let reader = new FileReader();
@@ -282,6 +289,7 @@
                     app3.thumbs = e.target.result;
                 };
                 reader.readAsDataURL(file);
+
             },
             imageUpload() {
     			$("#ld-gallery").show();
@@ -292,6 +300,8 @@
             		this.images.push(response.data.image);
             		$("#imgprev").hide();
     				$("#ld-gallery").hide();
+    				$("#form-upload").hide();
+    				$("#form-pilih").show();
                 })
                 .catch(function (error) {
 				    if (error.response) {
@@ -302,9 +312,13 @@
 				      // The request was made but no response was received
 				      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
 				      // http.ClientRequest in node.js
+    				  $("#ld-gallery").hide();
+            		  app3.image = '';
 				      console.log(error.request);
 				    } else {
 				      // Something happened in setting up the request that triggered an Error
+				      $("#ld-gallery").hide();
+            		  app3.image = '';
 				      console.log('Error', error.message);
 				    }
 				    console.log(error.config);

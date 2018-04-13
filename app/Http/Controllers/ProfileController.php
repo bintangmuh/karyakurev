@@ -60,6 +60,27 @@ class ProfileController extends Controller
     }
     public function changeProfileImg(Request $request)
     {
-    	# code...
+    	
+    }
+
+    public function changePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        if($validator->fails()) {
+            Session::flash('error-password', 'Password ada yang salah');
+            return redirect()->back()
+                ->withErrors($validator);
+        }
+
+        $user = User::find(Auth::user()->id);
+        $user->password = bcrypt($request->password);
+
+        Session::flash('success', 'password telah diperbaharui!');
+
+        return redirect()->route('user.edit');
+
     }
 }

@@ -4,8 +4,6 @@
 
 @push('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 @endpush
 
 @section('body')
@@ -77,6 +75,31 @@
 					</form>
 				</div>
 			</div>
+			<div class="card mt-4 mb-4">
+				<div class="card-body">
+					<b><i class="fa fa-key"></i> Ubah Password</b>
+					<hr>
+					<form action="">
+						<div class="form-group row">
+							<label for="password" class="col-md-3 label-control">Password Baru : </label>
+							<div class="col-md-9">
+								<input type="password" name="password" class="form-control" id="password">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="retype" class="col-md-3 label-control">Tulis ulang Password Baru : </label>
+							<div class="col-md-9">
+								<input type="password" name="password" class="form-control" id="retype">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-3">
+								<button type="submit" class="btn btn-primary btn-block">Simpan Sandi Baru</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 
 		<div id="uploadsection" class="col-md-3">
@@ -84,15 +107,14 @@
 				<div class="card-body">
 					<b>Gambar Profil</b>
 					<hr>
-					<img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle" width="100%" alt="">
-					<form action="">
-						<label class="btn btn-primary btn-block custom-file-form">
-							<input type="file" name="profilimg">
-							<i class="fa fa-upload"></i> Unggah Gambar
-						</label>
-					</form>
+					<img src="{{ asset('img/noprofilimage.png') }}"  class="rounded-circle mb-3" width="100%" alt="">
+					<button class="btn btn-primary btn-block"><i class="fa fa-pencil-alt"></i> Ubah Gambar Profil</button>
 				</div>
 			</div>
+		</div>
+
+		<div class="col-md-8">
+			
 		</div>
 	</div>
 </div>
