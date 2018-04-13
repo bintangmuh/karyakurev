@@ -1,5 +1,9 @@
 @extends('master')
 
+@push('css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+@endpush
+
 @section('content')
 @include('components.navbar')
 <div class="container">
@@ -9,7 +13,6 @@
                 <img src="{{ asset('img/karyaku-full-200px.png') }}" style="max-width: 200px; margin: 20px 0px;" class="img-fluid" alt="Karyaku">
             </div>
             <div class="card card-primary">
-                {{-- <div class="card-header">Register</div> --}}
                 <div class="card-body">
                     <h4 class="text-center">Pendaftaran Akun</h4>
                     <hr>    
@@ -117,3 +120,12 @@
     </div>
 </div>
 @endsection
+
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#prodi').select2();
+        });
+    </script>
+@endpush
