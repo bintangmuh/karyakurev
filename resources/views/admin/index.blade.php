@@ -5,41 +5,72 @@
 </ol>
 <div class="container">
 	<div class="row">
+
 		<div class="col-sm-6 col-lg-3">
-			<div class="card text-white bg-info">
+			<div class="card text-white bg-blue">
 				<div class="card-body pb-0">
-					<button type="button" class="btn btn-transparent p-0 float-right">
-					<i class="icon-location-pin"></i>
-					</button>
-					<h4 class="mb-0">9.823</h4>
-					<p>Members online</p>
+					<div class="row">
+						<div class="col-3 mr-3">
+								<i class="fa fa-file fa-3x"></i>
+							</div>
+							<div class="col-8">
+								<h4 class="mb-0">{{ App\Karya::all()->count() }}</h4>
+								<p>Karya Masuk</p>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+
+		<div class="col-sm-6 col-lg-3">
+			<div class="card text-white bg-teal">
+				<div class="card-body pb-0">
+					<div class="row">
+						<div class="col-3 mr-3">
+							<i class="fa fa-graduation-cap fa-3x"></i>
+						</div>
+						<div class="col-8">
+							<h4 class="mb-0">{{ App\Prodi::all()->count() }}</h4>
+							<p>Program Studi</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="col-sm-6 col-lg-3">
-			<div class="card text-white bg-info">
+			<div class="card text-white bg-yellow">
 				<div class="card-body pb-0">
-					<button type="button" class="btn btn-transparent p-0 float-right">
-					<i class="icon-location-pin"></i>
-					</button>
-					<h4 class="mb-0">9.823</h4>
-					<p>Members online</p>
+					<div class="row">
+						<div class="col-3 mr-3">
+							<i class="fa fa-graduation-cap fa-3x"></i>
+						</div>
+						<div class="col-8">
+							<h4 class="mb-0">{{ App\User::all()->count() }}</h4>
+							<p>Members</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="col-sm-6 col-lg-3">
-			<div class="card text-white bg-info">
+			<div class="card text-white bg-red">
 				<div class="card-body pb-0">
-					<button type="button" class="btn btn-transparent p-0 float-right">
-					<i class="icon-location-pin"></i>
-					</button>
-					<h4 class="mb-0">9.823</h4>
-					<p>Members online</p>
+					<div class="row">
+						<div class="col-3 mr-3">
+							<i class="fa fa-inbox fa-3x"></i>
+						</div>
+						<div class="col-8">
+							<h3 class="mb-0">{{ App\Report::all()->count() }}</h3>
+							<p>Laporan Masuk</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+
+		
 	</div>
 </div>
 </div>

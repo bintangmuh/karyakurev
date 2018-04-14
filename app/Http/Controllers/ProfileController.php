@@ -71,20 +71,26 @@ class ProfileController extends Controller
                 ->withErrors($validator);
         }
 
-        $path = "/uploads/userphoto-" . Auth::user()->id . "-" . date("Ymdhis"); 
-        $uploadedFile = Image::make($request->file('photo'))
+        try {
+            $path = "/uploads/userphoto-" . Auth::user()->id . "-" . date("Ymdhis"); 
+            $uploadedFile = Image::make($request->file('photo'))
             ->fit(100, 100, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
             ->save(public_path() . $path ."-100.jpg");
 
-        $uploadedFile = Image::make($request->file('photo'))
+            $uploadedFile = Image::make($request->file('photo'))
             ->fit(60, 60, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
             ->save(public_path() . $path ."-60.jpg");
+        } catch (Exception $e) {
+            Session::flash('error-photo', 'Tidak bisa menggunakan gambar tersebut silahkan menggunakan gambar yang lain');
+            return redirect()->back()
+                ->withErrors($validator);
+        }
 
         $user = User::find(Auth::user()->id);
 

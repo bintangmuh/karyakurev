@@ -114,7 +114,8 @@
 					<div class="alert alert-danger">
 						<b>Gagal</b><br>
 						{{ Session::get('error-photo') }}
-						{{ $errors }}
+			
+						<p><i class="fa fa-exclamation-triangle"></i> {{$errors->first('photo')}}</p>
 					</div>
 					@endif
 					<img src="{{ $user->profil_img == NULL ? asset('img/noprofilimage.png') : asset($user->profil_img . '-100.jpg') }}"  class="rounded-circle mb-3" width="100%" alt="">

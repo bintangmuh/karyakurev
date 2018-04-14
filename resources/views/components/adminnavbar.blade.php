@@ -9,7 +9,7 @@
 	<ul class="nav navbar-nav ml-auto">
 		<li class="nav-item dropdown">
 			<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-				<img src="{{ asset('img/noimage.png') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
+				<img src="{{ asset('img/noprofileimage.png') }}" class="img-avatar" alt="{{ Auth::guard('admin')->user()->name}}">
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">
 				<div class="dropdown-header text-center">
@@ -27,10 +27,12 @@
 		<nav class="sidebar-nav">
 			<ul class="nav">
 				<li class="nav-item">
-					<a class="nav-link" href="{{ route('admin.index')}}"><i class="fa fa-home"></i> Dashboard <span class="badge badge-primary">NEW</span></a>
+					<a class="nav-link" href="{{ route('admin.index')}}"><i class="fa fa-home"></i> Dashboard</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ route('admin.report')}}"><i class="fa fa-flag"></i> Laporan</a>
+					<a class="nav-link" href="{{ route('admin.report')}}"><i class="fa fa-flag"></i> Laporan
+						<span class="badge badge-primary">{{ App\Report::all()->count() }}</span>
+					</a>
 				</li>
 				<li class="nav-title">
 					Pangkalan Data
