@@ -20,7 +20,7 @@
 		@endslot
 	@endcomponent
 
-	<link rel="stylesheet" href="{{ asset('/css/jquery.fancybox.min.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
 @endpush
 
 @section('body')	
@@ -103,6 +103,6 @@
 
 @push('js')
 <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5abce2b6003b52001341b066&product=inline-share-buttons"></script>
-<script src="{{ asset('/js/jquery.fancybox.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 <script></script>
 @endpush
