@@ -19,6 +19,7 @@
 		</div>
 
 		<h3>Hasil Pencarian "{{ $keyword }}"</h3>
+
 		<div class="row">
 			@foreach ($karya as $karyaku)
 		        <div class="col-lg-3 col-md-4 col-6">
@@ -30,7 +31,7 @@
 							<a href="{{ route('karya.tampil', ['karya' => App\Karya::find($karyaku->id)]) }}" class="title">{{ $karyaku->nama }}</a>
 						</div>
 						<div class="author">
-							<a href="" class="title">{{ $karyaku->name }}</a>
+							<a href="{{ route('user.profile', ['user' => $karyaku->user_id]) }}" class="title">{{ $karyaku->name }}</a>
 						</div>
 					</div>
 				</div>

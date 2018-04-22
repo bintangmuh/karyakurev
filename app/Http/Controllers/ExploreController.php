@@ -24,11 +24,14 @@ class ExploreController extends Controller
 
     public function searchGet($request) {
 		$keyword = $request;
-		$karya = DB::table('karya')->join('users', 'users.id', '=', 'karya.user_id')
-									->where('karya.nama', 'LIKE', '%'.$keyword.'%')
-									->orWhere('karya.deskripsi', 'LIKE', '%'.$keyword.'%')
-									->orWhere('users.name', 'LIKE', '%'.$keyword.'%')
-									->paginate(8);
+		$karya = DB::table('karya')->select('karya.*', 'users.name','users.deleted_at AS user_deleted_at')
+                                    ->join('users', 'users.id', '=', 'karya.user_id')
+            						->where('karya.nama', 'LIKE', '%'.$keyword.'%')
+                                    ->orWhere('karya.deskripsi', 'LIKE', '%'.$keyword.'%')
+                                    ->orWhere('users.name', 'LIKE', '%'.$keyword.'%')
+                                    ->where('karya.deleted_at', 'IS NULL')
+                                    ->where('users.deleted_at', 'IS NULL')
+            						->paginate(8);
 		// return $karya;
 		return view('explore.search', ['karya' => $karya, 'keyword' => $keyword]);
     }

@@ -1,0 +1,34 @@
+{
+    "avg": {
+        "ccn": 1.35,
+        "bugs": 0.04,
+        "kanDefect": 0.19,
+        "relativeSystemComplexity": 56.53,
+        "relativeDataComplexity": 0.26,
+        "relativeStructuralComplexity": 56.27,
+        "volume": 108.67,
+        "commentWeight": 31.34,
+        "intelligentContent": 37.15,
+        "lcom": 2.19,
+        "instability": 0.88,
+        "afferentCoupling": 0.6,
+        "efferentCoupling": 2.31,
+        "difficulty": 0.94,
+        "mi": 110.98
+    },
+    "sum": {
+        "loc": 1541,
+        "cloc": 493,
+        "lloc": 1048,
+        "nbMethods": 119,
+        "nbClasses": 52,
+        "nbInterfaces": 0,
+        "violations": {
+            "total": 4,
+            "information": 0,
+            "warning": 2,
+            "error": 2,
+            "critical": 0
+        }
+    }
+}

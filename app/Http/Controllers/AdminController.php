@@ -155,6 +155,8 @@ class AdminController extends Controller
             return redirect()->route('admin.user');
         }
 
+        $admin->password = bcrypt($request->newpassword);
+        $admin->save();
         Session::flash('success', '<i class="fa fa-key"></i> Sukses mengganti password'); 
         return redirect()->route('admin.user');
 
@@ -183,7 +185,7 @@ class AdminController extends Controller
             'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->username)
+            'password' => bcrypt($request->password)
         ]);
 
         Session::flash('success', 'Sukses menambah administrator'); 

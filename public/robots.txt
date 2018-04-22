@@ -1,2 +1,7 @@
+User-agent: Twitterbot
+Disallow: *
+
+Allow: /uploads
+
 User-agent: *
 Disallow:
