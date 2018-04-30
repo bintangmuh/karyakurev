@@ -11,7 +11,7 @@
 		<div class="col-lg-8 card">
 			<div class="row">
 				<div class="col-12 pt-3 pb-3 media profil-box">
-					<img src="{{ $user->profil_img == NULL ? asset('img/noprofilimage.png') : asset($user->profil_img . '-100.jpg') }}"  class="rounded-circle mr-3" alt=""><br>
+					<img src="{{ $user->profil_img == NULL ? asset('img/noprofilimage.png') : asset($user->profil_img . '-100.jpg') }}"  class="rounded-circle mr-3" alt="" style="width: 100px; height: 100px;"><br>
 					<div class="media-body">
 						<span class="line nama">{{ $user->name }} 
 						@if (Auth::check())

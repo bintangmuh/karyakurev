@@ -211,7 +211,7 @@ class KaryaController extends Controller
     public function uploadImg(String $type, $file, Karya $karya) {
         $path = "/uploads/" . $type . "-" . $karya->id . "-" . date("Ymdhis").".jpg"; 
         $uploadedFile = Image::make($file)
-            ->resize(null, 1000, function ($constraint) {
+            ->resize(null, 700, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })

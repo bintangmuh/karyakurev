@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Karya;
 use App\Tags;
+use App\User;
 use Illuminate\Http\Request;
 
 class ExploreController extends Controller
@@ -24,15 +25,11 @@ class ExploreController extends Controller
 
     public function searchGet($request) {
 		$keyword = $request;
-		$karya = DB::table('karya')->select('karya.*', 'users.name','users.deleted_at AS user_deleted_at')
-                                    ->join('users', 'users.id', '=', 'karya.user_id')
-            						->where('karya.nama', 'LIKE', '%'.$keyword.'%')
-                                    ->orWhere('karya.deskripsi', 'LIKE', '%'.$keyword.'%')
-                                    ->orWhere('users.name', 'LIKE', '%'.$keyword.'%')
-                                    ->where('karya.deleted_at', 'IS NULL')
-                                    ->where('users.deleted_at', 'IS NULL')
-            						->paginate(8);
-		// return $karya;
+		$user = User::where('name', 'LIKE', '%'.$keyword.'%')->pluck('id');
+
+        $karya = Karya::where('nama', 'LIKE', '%'.$keyword.'%')
+                        ->orWhereIn('user_id', $user)->paginate(8);
+
 		return view('explore.search', ['karya' => $karya, 'keyword' => $keyword]);
     }
 

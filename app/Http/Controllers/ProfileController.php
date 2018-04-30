@@ -74,7 +74,7 @@ class ProfileController extends Controller
         try {
             $path = "/uploads/userphoto-" . Auth::user()->id . "-" . date("Ymdhis"); 
             $uploadedFile = Image::make($request->file('photo'))
-            ->fit(100, 100, function ($constraint) {
+            ->fit(200, 200, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
@@ -116,6 +116,7 @@ class ProfileController extends Controller
 
         $user = User::find(Auth::user()->id);
         $user->password = bcrypt($request->password);
+        $user->save();
 
         Session::flash('success', 'password telah diperbaharui!');
         return redirect()->route('user.edit');

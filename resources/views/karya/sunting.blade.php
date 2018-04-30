@@ -37,6 +37,9 @@
 			</ul>
 		</div>
 		<div class="col-sm-12 col-md-10">
+			<div class="text-right">
+				<a href="{{ route('karya.tampil', ['karya' => $karya])}}" class="btn btn-primary mt-2 mb-2 left" target="__blank"><i class="fa fa-eye"></i> Lihat karya</a>
+			</div>
 			<div class="card">
 				<div :class="'card-body ' + [ pageinfo == 'active' ? '' : 'd-none' ]">
 					@if(Session::has('success'))
@@ -164,8 +167,7 @@
 
 
 @push('js')
-<script src="{{ asset("/js/selectize.min.js") }}"></script>
-<script src="{{ asset("/js/sweetalert2.all.js") }}"></script>
+<script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
@@ -234,7 +236,7 @@
 				  showCancelButton: true,
 				  confirmButtonColor: '#3085d6',
 				  cancelButtonColor: '#d33',
-				  confirmButtonText: 'Yes, delete it!'
+				  confirmButtonText: 'Ya'
 				}).then((result) => {
 				  if (result.value) {
 					this.thumbnailUpload();

@@ -138,7 +138,7 @@
 				id: 0,
 				nama: '',
 				editpath: '',
-				deltepath: '',
+				deletepath: '',
 				basepath: '{{ route('admin.user') }}',
 			},
 			methods: {

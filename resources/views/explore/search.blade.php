@@ -18,7 +18,12 @@
 			</div>
 		</div>
 
-		<h3>Hasil Pencarian "{{ $keyword }}"</h3>
+		<h4>Hasil Pencarian "{{ $keyword }}"</h4>
+		@if ($karya->count() == 0)
+			<div class="alert alert-warning">
+				Tidak ada hasil pencarian 
+			</div>
+		@endif
 
 		<div class="row">
 			@foreach ($karya as $karyaku)
@@ -31,7 +36,7 @@
 							<a href="{{ route('karya.tampil', ['karya' => App\Karya::find($karyaku->id)]) }}" class="title">{{ $karyaku->nama }}</a>
 						</div>
 						<div class="author">
-							<a href="{{ route('user.profile', ['user' => $karyaku->user_id]) }}" class="title">{{ $karyaku->name }}</a>
+							<a href="{{ route('user.profile', ['user' => $karyaku->user->id]) }}" class="title">{{ $karyaku->user->name }}</a>
 						</div>
 					</div>
 				</div>

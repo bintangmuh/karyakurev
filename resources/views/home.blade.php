@@ -6,7 +6,9 @@
         <div class="col-md-3">
             <div class="card d-none d-md-block">
                 <div class="card-body">
-                    <img src="{{ Auth::user()->profil_img == NULL ? asset('img/noprofilimage.png') : asset(Auth::user()->profil_img . '-100.jpg') }}"  class="rounded-circle" alt=""> <br>
+                    <div class="d-block text-center">
+                        <img src="{{ Auth::user()->profil_img == NULL ? asset('img/noprofilimage.png') : asset(Auth::user()->profil_img . '-100.jpg') }}"  class="rounded-circle text-center mb-3" style="width: 100px; height: 100px;">
+                    </div>
                     <b>{{ Auth::user()->name }}</b> <br>
                     {{ Auth::user()->nim }} <br>
                     {{ Auth::user()->prodi->nama }}
