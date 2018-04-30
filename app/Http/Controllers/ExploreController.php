@@ -25,9 +25,9 @@ class ExploreController extends Controller
 
     public function searchGet($request) {
 		$keyword = $request;
-		$user = User::where('name', 'LIKE', '%'.$keyword.'%')->pluck('id');
+		$user = User::where('LOWER(name)', 'LIKE', '%'. strtolower($keyword).'%')->pluck('id');
 
-        $karya = Karya::where('nama', 'LIKE', '%'.$keyword.'%')
+        $karya = Karya::where('LOWER(nama)', 'LIKE', '%'. strtolower($keyword) .'%')
                         ->orWhereIn('user_id', $user)->paginate(8);
 
 		return view('explore.search', ['karya' => $karya, 'keyword' => $keyword]);
