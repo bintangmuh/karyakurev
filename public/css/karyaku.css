@@ -170,7 +170,7 @@ ul.gallery {
   border-radius: 5px;
   color: #0093E9 !important;
 }
-@media (max-width: 768px) { 
+@media (max-width: 990px) { 
   .nav-link.active {
     padding-left: 15px;
   }
