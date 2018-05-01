@@ -54,6 +54,7 @@
 @push('js')
 <script src="{{ asset('/js/moment-with-locales.js')}}"></script>       
 <script>
+
     var app = new Vue({
         el: "#app",
         data: {
@@ -63,8 +64,8 @@
         mounted: function() {
             axios.get('{{route('home.list')}}')
             .then(function (response) {
-              app.data = response.data.data;
-              app.next_page_url = response.data.next_page_url;
+                app.data = response.data.data;
+                app.next_page_url = response.data.next_page_url;
             })
             .catch(function (error) {
                console.log(error);

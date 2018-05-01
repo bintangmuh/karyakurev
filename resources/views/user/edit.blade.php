@@ -119,6 +119,7 @@
 					</div>
 					@endif
 					<img src="{{ $user->profil_img == NULL ? asset('img/noprofilimage.png') : asset($user->profil_img . '-100.jpg') }}"  class="rounded-circle mb-3" width="100%" alt="">
+					<span class="text-grey mb-3" style="font-size: 10pt"><i class="fa fa-exclamation-triangle"></i> Pastikan ukuran gambar kurang dari 3 MB</span>
 					<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#form-upload"><i class="fa fa-pencil-alt"></i> Ubah Gambar Profil</button>
 				</div>
 			</div>
@@ -137,7 +138,9 @@
 						</button>
 					</div>
 					<div class="modal-body">
+
 						<label for="Foto">Pilih foto profil : </label>
+						<span class="text-grey mb-3" style="font-size: 10pt"><i class="fa fa-exclamation-triangle"></i> Pastikan ukuran gambar kurang dari 3 MB</span>
 						<input type="file" name="photo" required>
 					</div>
 					<div class="modal-footer">
