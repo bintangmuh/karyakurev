@@ -27,7 +27,7 @@ class AdminLoginController extends Controller
     	]);
 
     	// attempt login admin
-    	if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
+    	if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password], true)) {
     		return redirect()->intended(route('admin.index'));
     	}
 
