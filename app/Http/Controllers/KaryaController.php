@@ -87,6 +87,7 @@ class KaryaController extends Controller
      */
     public function edit(Karya $karya)
     {
+        $this->unauthorizedAccess($karya);
         $tags = Tags::all();
         $selected = $karya->tags->pluck('id');
         return view('karya.sunting', ['karya' => $karya, 'tags' => $tags, 'selected' => $selected]);
@@ -101,6 +102,7 @@ class KaryaController extends Controller
      */
     public function update(Request $request, Karya $karya)
     {
+        $this->unauthorizedAccess($karya);
         $validator = Validator::make($request->all(), [
             'nama' => 'required|max:144',
             'deskripsi' => ''
@@ -130,12 +132,14 @@ class KaryaController extends Controller
      */
     public function destroy(Karya $karya)
     {
+        $this->unauthorizedAccess($karya);
         $karya->delete();
         return "karya deleted";
     }
 
     public function addImage(Request $request, Karya $karya)
     {
+        $this->unauthorizedAccess($karya);
         $process = $this->uploadImg('gallery', $request->get('image'), $karya);
         $gallery = new Gallery([
             'user_id' => Auth::user()->id,
@@ -147,6 +151,7 @@ class KaryaController extends Controller
 
     public function addVideo(Request $request, Karya $karya)
     {
+        $this->unauthorizedAccess($karya);
         $validator = Validator::make($request->all(), [
             'youtubeurl' => 'required|active_url'
         ]);
@@ -169,6 +174,7 @@ class KaryaController extends Controller
     // remove image
     public function removeImage(Karya $karya, Request $request)
     {
+        $this->unauthorizedAccess($karya);
         $image = Gallery::findOrFail($request->image);
         $image->delete();
         return response()->json(['success' => 'Berhasil menghapus gambar galeri'], 200);
@@ -177,6 +183,7 @@ class KaryaController extends Controller
     // Remove youtube video 
     public function removeVideo(Karya $karya, Request $request)
     {
+        $this->unauthorizedAccess($karya);
         $video = Video::findOrFail($request->video);
         $video->delete();
         return response()->json(['success' => 'Berhasil menghapus youtube video'], 200);
@@ -185,6 +192,7 @@ class KaryaController extends Controller
     //Tambah thumbnail
     public function addThumbs(Request $request, Karya $karya)
     {
+        $this->unauthorizedAccess($karya);
         $validator = Validator::make($request->all(), [
             'thumbs' => 'required',
         ]);
@@ -218,6 +226,12 @@ class KaryaController extends Controller
             ->save(public_path() . $path);
         
         return $path;
+    }
+
+    public function unauthorizedAccess(Karya $karya) {
+        if (Auth::user()->id == $karya->user_id) {
+            return response()->view('errors.403');
+        }
     }
 
     // parsing youtube url

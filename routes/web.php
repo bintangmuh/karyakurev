@@ -44,15 +44,13 @@ Route::group(['prefix' => 'karya', 'as'=> 'karya.'], function () {
     // CRUD karya user
     Route::get('create/', 'KaryaController@create')->name('buatview')->middleware('auth');
     Route::post('create/', 'KaryaController@store')->name('buat')->middleware('auth');
-    Route::post('{karya}/thumbs/', 'KaryaController@addThumbs')->name('buat.thumbs')->middleware('auth', 'can:update,karya');
-    Route::post('{karya}/img/upload/', 'KaryaController@addImage')->name('buat.gambar')->middleware('auth', 'can:update,karya');
-    Route::post('{karya}/video/', 'KaryaController@addVideo')->name('buat.video')->middleware('auth', 'can:update,karya');
-    Route::post('{karya}/img/delete', 'KaryaController@removeImage')->name('hapus.gambar')->middleware('auth', 'can:update,karya');
-    Route::post('{karya}/video/delete', 'KaryaController@removeVideo')->name('hapus.video')->middleware('auth', 'can:update,karya');
-    Route::get('{karya}/edit', 'KaryaController@edit')->name('editview')->middleware('auth', 'can:update,karya');
-    Route::post('{karya}/edit', 'KaryaController@update')->name('edit')->middleware('auth', 'can:update,karya');
-    Route::get('{karya}/delete', 'KaryaController@delete')->name('delete')->middleware('auth', 'can:update,karya');
-    Route::get('{karya}/report', 'KaryaController@report')->name('delete')->middleware('auth', 'can:update,karya');
+    Route::post('{karya}/thumbs/', 'KaryaController@addThumbs')->name('buat.thumbs')->middleware('auth');
+    Route::post('{karya}/img/upload/', 'KaryaController@addImage')->name('buat.gambar')->middleware('auth');
+    Route::post('{karya}/video/', 'KaryaController@addVideo')->name('buat.video')->middleware('auth');
+    Route::post('{karya}/img/delete', 'KaryaController@removeImage')->name('hapus.gambar')->middleware('auth');
+    Route::post('{karya}/video/delete', 'KaryaController@removeVideo')->name('hapus.video')->middleware('auth');
+    Route::get('{karya}/edit', 'KaryaController@edit')->name('editview')->middleware('auth');
+    Route::post('{karya}/edit', 'KaryaController@update')->name('edit')->middleware('auth');
     
     // penampil karya
     Route::get('{karya}', 'KaryaController@show')->name('tampil');
